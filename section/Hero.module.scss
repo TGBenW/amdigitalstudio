@@ -1,0 +1,70 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  margin-top: 5rem;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: $text;
+}
+
+.title {
+  position: relative;
+  z-index: 10;
+  font-size: 2.25rem;
+  font-weight: 700;
+  
+  @include md {
+    line-height: 5rem;
+  }
+  
+  @include lg {
+    font-size: 4.5rem;
+  }
+}
+
+.highlight {
+  font-family: $font-jakarta;
+  color: $primary;
+}
+
+.subtitle {
+  margin-top: 1.5rem;
+  width: 75%;
+  font-size: 1.125rem;
+  font-weight: 250;
+  opacity: 0.8;
+  
+  @include md {
+    max-width: 600px;
+    font-size: 1.25rem;
+  }
+}
+
+.location {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  opacity: 0.6;
+}
+
+.cta {
+  margin-top: 2rem;
+  height: 56px;
+  width: 180px;
+}
+
+.glow {
+  position: absolute;
+  opacity: 0.35;
+  pointer-events: none;
+}
