@@ -1,0 +1,171 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.brands {
+  margin-top: 5rem;
+}
+
+.header {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  
+  h2 {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text;
+    
+    @include md {
+      font-size: 1rem;
+    }
+  }
+}
+
+.lineLeft,
+.lineRight {
+  height: 2px;
+  width: 3rem;
+  border: 0;
+  background-color: $primary;
+  margin: 2rem 0;
+}
+
+.lineLeft {
+  margin-right: 1rem;
+  
+  @include md {
+    margin-right: 2rem;
+  }
+}
+
+.lineRight {
+  margin-left: 1rem;
+  
+  @include md {
+    margin-left: 2rem;
+  }
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+  margin: 2rem 1.75rem 0;
+  padding: 1.75rem 0;
+  border-radius: $radius-2xl;
+  background-color: $bg-card;
+}
+
+.track {
+  display: flex;
+  flex: none;
+
+  gap: 0;
+  padding-right: 0;
+
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+
+  opacity: 0;
+}
+
+.trackReady {
+  opacity: 1;
+  transition: opacity 0.18s ease;
+
+  -webkit-animation-name: brandsMarquee;
+
+          animation-name: brandsMarquee;
+  -webkit-animation-duration: var(--duration);
+          animation-duration: var(--duration);
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.trackReduced {
+  -webkit-animation: none;
+          animation: none;
+  transform: translate3d(0, 0, 0);
+}
+
+@-webkit-keyframes brandsMarquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(var(--set-width) * -1), 0, 0);
+  }
+}
+
+@keyframes brandsMarquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(var(--set-width) * -1), 0, 0);
+  }
+}
+
+.items {
+  display: flex;
+  flex: none;
+  gap: 5.5rem;
+  padding-right: 5.5rem; // расстояние между первым и вторым набором
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.item {
+  display: flex;
+  flex-shrink: 0;
+  width: auto;
+  list-style: none;
+  align-items: center;
+  gap: 0.75rem;
+  
+  @include md {
+    gap: 1.25rem;
+  }
+  
+  img {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  span {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $light-gray;
+    
+    @include md {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.footer {
+  margin: 1.5rem 1.75rem 0;
+  text-align: center;
+  
+  p {
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: rgba($text, 0.6);
+  }
+}
+
+.brDesktop {
+  display: none;
+  
+  @include md {
+    display: block;
+  }
+}
