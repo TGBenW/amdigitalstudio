@@ -2,7 +2,8 @@
 
 import ScrollToTopButton from "../components/ui/ScrollToTopButton";
 import BeautifulWorks from "../section/BeautifulWorks";
-import BlogAndCases from "../section/BlogAndCases";
+import Cases from "../section/Cases";
+import Blog from "../section/Blog";
 import Stack from "../section/Stack";
 import Capabilities from "../section/Capabilities";
 import FAQ from "../section/FAQ";
@@ -39,7 +40,8 @@ export default function HomePage() {
       </div>
       <div className="container">
         <Pricing />
-        <BlogAndCases />
+        <Cases />
+        <Blog />
       </div>
       <div className="bg-white">
         <div className="container">
