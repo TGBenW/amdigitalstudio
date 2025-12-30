@@ -1,0 +1,102 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.cases {
+  padding-bottom: 7rem;
+}
+
+.cardsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.75rem;
+  padding-top: 4rem;
+
+  @include md {
+    padding-top: 5rem;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba($primary, 0.3);
+  background: rgba($primary, 0.01);
+  color: $text;
+
+  @include sm {
+    width: 706px;
+    flex-direction: row;
+  }
+}
+
+.cardImage {
+  height: 10rem;
+  width: 100%;
+  border-radius: 0.9rem 0.9rem 0 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+
+  @include sm {
+    height: auto;
+    width: auto;
+    aspect-ratio: 1;
+    align-self: stretch;
+    border-radius: 0.9rem 0 0 0.9rem;
+    flex-shrink: 0;
+  }
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  flex: 1;
+
+  @include sm {
+    padding: 1.25rem;
+  }
+}
+
+.category {
+  font-size: 0.875rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: $primary;
+}
+
+.title {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 200;
+  opacity: 0.8;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.tag {
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  border-radius: 1rem;
+  background: transparent;
+  border: 1px solid rgba($primary, 0.5);
+  color: $primary;
+  white-space: nowrap;
+}
