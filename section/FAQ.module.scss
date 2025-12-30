@@ -1,0 +1,451 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 3rem;
+  padding: 0 1.5rem;
+
+  @include md {
+    flex-direction: row;
+    gap: 4rem;
+    margin-top: 5rem;
+  }
+}
+
+.faqColumn {
+  flex: 1;
+
+  @include md {
+    padding-right: 4rem;
+    border-right: 1px solid rgba($background, 0.2);
+  }
+}
+
+.contactColumn {
+  flex: 1;
+
+  @include md {
+    padding-left: 0rem;
+  }
+}
+
+.columnTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $background;
+  margin-bottom: 1.5rem;
+
+  @include md {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  @include md {
+    gap: 1rem;
+  }
+}
+
+.faqItem {
+  position: relative;
+  text-align: left;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba($primary, 0.25);
+  border-radius: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba($primary, 0.03) 0%,
+    rgba($background, 0.02) 100%
+  );
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: $primary;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 0% 50%,
+      rgba($primary, 0.15) 0%,
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: rgba($primary, 0.5);
+    transform: translateX(4px);
+
+    &::before {
+      opacity: 1;
+      box-shadow: 0 0 20px rgba($primary, 0.5);
+    }
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.question {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $background;
+  margin-bottom: 0.5rem;
+
+  @include md {
+    font-size: 1.125rem;
+  }
+}
+
+.answer {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba($background, 0.7);
+
+  @include md {
+    font-size: 0.95rem;
+  }
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba($background, 0.15);
+}
+
+.contactBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contactLabel {
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba($background, 0.45);
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: $background;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.contactIcon {
+  font-size: 1.25rem;
+}
+
+.responseTime {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: rgba($background, 0.5);
+}
+
+.socialLinks {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background: rgba($background, 0.08);
+  color: rgba($background, 0.7);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba($primary, 0.15);
+    color: $primary;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $background;
+}
+
+.optional {
+  font-weight: 300;
+  opacity: 0.6;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba($background, 0.2);
+  background: rgba($background, 0.05);
+  color: $background;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+
+  &::-webkit-input-placeholder {
+    color: rgba($background, 0.4);
+  }
+
+  &::-moz-placeholder {
+    color: rgba($background, 0.4);
+  }
+
+  &:-ms-input-placeholder {
+    color: rgba($background, 0.4);
+  }
+
+  &::-ms-input-placeholder {
+    color: rgba($background, 0.4);
+  }
+
+  &::placeholder {
+    color: rgba($background, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    background: rgba($background, 0.08);
+  }
+}
+
+.textarea {
+  resize: none;
+  min-height: 140px;
+}
+
+.inputError {
+  border-color: #ef4444;
+
+  &:focus {
+    border-color: #ef4444;
+  }
+}
+
+.errorText {
+  display: block;
+  height: 1.25rem;
+  font-size: 0.8rem;
+  color: #ef4444;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  border: 2px dashed rgba($background, 0.2);
+  border-radius: 0.75rem;
+  background: rgba($background, 0.02);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: rgba($primary, 0.5);
+    background: rgba($background, 0.05);
+  }
+}
+
+.dropzoneDragging {
+  border-color: $primary;
+  background: rgba($primary, 0.1);
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadIcon {
+  font-size: 2rem;
+  color: rgba($background, 0.4);
+}
+
+.dropzoneText {
+  font-size: 0.9rem;
+  color: rgba($background, 0.6);
+
+  span {
+    color: $primary;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+.dropzoneHint {
+  font-size: 0.75rem;
+  color: rgba($background, 0.4);
+}
+
+.filePreview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba($background, 0.2);
+  background: rgba($background, 0.05);
+}
+
+.fileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow: hidden;
+}
+
+.fileName {
+  font-size: 0.875rem;
+  color: $background;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fileSize {
+  font-size: 0.75rem;
+  color: rgba($background, 0.5);
+}
+
+.removeFile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: rgba($background, 0.1);
+  color: rgba($background, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(#ef4444, 0.2);
+    color: #ef4444;
+  }
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.25rem;
+  width: 100%;
+  border-radius: 0.75rem;
+  background: $primary;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $text;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba($text, 0.3);
+  border-top-color: $text;
+  border-radius: 50%;
+  -webkit-animation: spin 0.8s linear infinite;
+          animation: spin 0.8s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.successText {
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba($background, 0.7);
+  margin-top: 0.5rem;
+}
