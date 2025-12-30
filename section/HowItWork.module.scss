@@ -1,0 +1,297 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.howItWorks {
+  padding: 8rem 0 7rem;
+  color: $text;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 3rem;
+  
+  @include lg {
+    flex-direction: row;
+    gap: 5rem;
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  
+  @include lg {
+    width: 606px;
+  }
+  
+  h1 {
+    margin-top: 1rem;
+    font-size: 1.875rem;
+    font-weight: 700;
+    
+    @include md {
+      font-size: 3rem;
+    }
+  }
+}
+
+.category {
+  font-size: 0.875rem;
+  color: $primary;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(2rem);
+  
+  @include lg {
+    max-width: 500px;
+  }
+  
+  p {
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    font-weight: 200;
+    opacity: 0.8;
+    
+    @include md {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+.btn {
+  margin-top: 2.5rem;
+  height: 56px;
+  width: 9rem;
+  padding: 0 0.5rem;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  margin: 9rem 2rem 0;
+
+  @include md {
+    flex-direction: row;
+    margin-top: 13rem;
+    align-items: stretch;
+  }
+}
+
+.stepWrap {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.step {
+  padding: 0 1rem;
+  
+  h2 {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  p {
+    margin-bottom: 2rem;
+    width: 100%;
+    font-weight: 200;
+    opacity: 0.8;
+    
+    @include md {
+      margin: 1.5rem 0;
+      width: 92%;
+    }
+  }
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.stepIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background-color: $primary;
+  
+  @include md {
+    margin-bottom: 1rem;
+  }
+  
+  @include lg {
+    width: 5rem;
+    height: 5rem;
+  }
+  
+  img {
+    display: block;
+    padding: 0.25rem;
+    transition: transform 0.3s ease;
+    
+    @include lg {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.stepArrow {
+  position: relative;
+  display: none;
+  flex: 1;
+  align-items: center;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+  
+  @include md {
+    display: flex;
+  }
+  
+  hr {
+    display: none;
+    flex: 1;
+    height: 2px;
+    border: 0;
+    background-color: $primary;
+    
+    @include md {
+      display: flex;
+    }
+  }
+}
+
+.arrowIcon {
+  position: absolute;
+  right: -0.5rem;
+  display: none;
+  color: $primary;
+  
+  @include md {
+    display: flex;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin: 5rem 2rem 0;
+  
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include lg {
+    margin: 5rem 3rem 0;
+  }
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 2.25rem;
+  border-radius: $radius-2xl;
+
+  background: linear-gradient(
+    135deg,
+    rgba(white, 0.06) 0%,
+    rgba($bg-card, 0.18) 35%,
+    rgba($bg-card, 0.28) 100%
+  );
+
+  border: 1px solid rgba(white, 0.08);
+
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba($primary, 0.22);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background: radial-gradient(
+      120% 120% at 15% 0%,
+      rgba($primary, 0.18) 0%,
+      rgba(255, 255, 255, 0.06) 35%,
+      rgba(0, 0, 0, 0.00) 70%
+    );
+
+    opacity: 0.6;
+  }
+
+  h3 {
+    position: relative;
+
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 650;
+    color: #f0efeb;
+    letter-spacing: 0.01em;
+  }
+
+  ul {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    font-weight: 300;
+
+    li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+
+      gap: 1.25rem;
+
+      padding-bottom: 0.85rem;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+      &.noBorder {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      span:last-child {
+        font-weight: 400;
+        color: rgba(#f0efeb, 0.9);
+        text-align: right;
+      }
+    }
+  }
+}
+
+.label {
+  opacity: 0.72;
+  color: rgba($text, 0.82)
+}
