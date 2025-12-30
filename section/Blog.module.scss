@@ -1,0 +1,171 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.blog {
+  padding-bottom: 7rem;
+  margin-top: 7rem;
+}
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding-top: 4rem;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @include sm {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @include md {
+    padding-top: 5rem;
+  }
+}
+
+.card {
+  border-radius: 1rem;
+  border: 1px solid rgba($primary, 0.3);
+  background: rgba($primary, 0.01);
+  color: $text;
+  overflow: hidden;
+}
+
+.cardFeatured {
+  @include sm {
+    grid-row: span 2;
+  }
+
+  .cardImageWrapper {
+    height: 200px;
+
+    @include sm {
+      height: 100%;
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  .cardImage {
+    @include sm {
+      height: 100%;
+    }
+  }
+
+  .cardContent {
+    @include sm {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(to top, rgba($background, 0.95) 0%, rgba($background, 0.8) 40%, transparent 100%);
+      padding: 1.5rem;
+    }
+  }
+
+  .title {
+    @include sm {
+      font-size: 1.75rem;
+    }
+  }
+
+  .description {
+    @include sm {
+      font-size: 1rem;
+      max-width: 500px;
+    }
+  }
+}
+
+.cardSmall {
+  display: flex;
+  flex-direction: column;
+
+  @include sm {
+    flex-direction: row;
+    min-height: 200px;
+  }
+
+  .cardImageWrapper {
+    height: 150px;
+    flex-shrink: 0;
+
+    @include sm {
+      height: auto;
+      width: 220px;
+    }
+  }
+
+  .cardContent {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    @include sm {
+      padding: 1.25rem;
+    }
+  }
+
+  .title {
+    font-size: 1.1rem;
+
+    @include sm {
+      font-size: 1.25rem;
+    }
+  }
+
+  .description {
+    display: none;
+
+    @include sm {
+      display: block;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+.cardImageWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.cardContent {
+  padding: 1rem;
+}
+
+.category {
+  font-size: 0.75rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: $primary;
+}
+
+.title {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 200;
+  opacity: 0.8;
+}
