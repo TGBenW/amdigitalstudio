@@ -1,0 +1,229 @@
+{
+  "designData": [
+    {
+      "title": "Share your goals",
+      "name": "Goals",
+      "src": "./assets/design/design01.svg",
+      "caption": "Tell us about your project, target audience, and what success looks like. We'll scope it together."
+    },
+    {
+      "title": "Design & build",
+      "name": "Design Build",
+      "src": "./assets/design/design02.svg",
+      "caption": "We design in Figma, build in Next.js, and keep you updated through Notion. Clear milestones, no surprises."
+    },
+    {
+      "title": "Launch & support",
+      "name": "Launch Support",
+      "src": "./assets/design/design03.svg",
+      "caption": "Go live with confidence. Analytics, CMS, and integrations ready. Optional monthly support available."
+    }
+  ],
+  "techStack": [
+    { "name": "Next.js", "src": "./assets/stack/nextjs.svg" },
+    { "name": "React", "src": "./assets/stack/react.svg" },
+    { "name": "TypeScript", "src": "./assets/stack/typescript.svg" },
+    { "name": "SCSS", "src": "./assets/stack/scss.svg" },
+    { "name": "Stripe", "src": "./assets/stack/stripe.svg" },
+    { "name": "Google Analytics", "src": "./assets/stack/google-analytics.svg" },
+    { "name": "Figma", "src": "./assets/stack/figma.svg" },
+    { "name": "Vercel", "src": "./assets/stack/vercel.svg" },
+    { "name": "GitHub", "src": "./assets/stack/github.svg" },
+    { "name": "Webflow", "src": "./assets/stack/webflow.svg" }
+  ],
+  "worksImages": [
+    { "src": "./assets/beautifulworks/edo.svg", "alt": "Project 1" },
+    { "src": "./assets/beautifulworks/dfat.svg", "alt": "Project 2" },
+    { "src": "./assets/beautifulworks/insights.svg", "alt": "Project 3" },
+    { "src": "./assets/beautifulworks/oxfam.svg", "alt": "Project 4" },
+    { "src": "./assets/beautifulworks/cvgt.svg", "alt": "Project 5" },
+    { "src": "./assets/beautifulworks/dropbottle.svg", "alt": "Project 6" },
+    { "src": "./assets/beautifulworks/map.svg", "alt": "Project 7" },
+    { "src": "./assets/beautifulworks/unwrapped.svg", "alt": "Project 8" },
+    { "src": "./assets/beautifulworks/RWH.svg", "alt": "Project 9" },
+    { "src": "./assets/beautifulworks/bluegreen.svg", "alt": "Project 10" },
+    { "src": "./assets/beautifulworks/welcomehome.svg", "alt": "Project 11" },
+    { "src": "./assets/beautifulworks/ader.svg", "alt": "Project 12" }
+  ],
+  "capabilitiesButtons": [
+    { "name": "Website Design" },
+    { "name": "UI & UX" },
+    { "name": "Next.js Builds" },
+    { "name": "Landing Pages" },
+    { "name": "Performance" },
+    { "name": "SEO Basics" },
+    { "name": "GA4 Tracking" },
+    { "name": "Headless CMS" },
+    { "name": "Stripe Payments" },
+    { "name": "API Integrations" },
+    { "name": "Animations" },
+    { "name": "Interactive Web" },
+    { "name": "Python Automations" },
+    { "name": "Support & Updates" }
+  ],
+  "capabilitiesCards": [
+    {
+      "title": "1. Website Design",
+      "description": "Modern, clean, conversion-focused design. Interfaces that look great and drive action.",
+      "image": "./assets/capabilities/capabilities01.svg"
+    },
+    {
+      "title": "2. UI & UX",
+      "description": "Clear structure, strong hierarchy, and user flows that make the site easy to use and easy to trust.",
+      "image": "./assets/capabilities/capabilities02.svg"
+    },
+    {
+      "title": "3. Next.js Builds",
+      "description": "React, TypeScript, SCSS. Fast, maintainable front-end with a production-ready setup. Support and updates available.",
+      "image": "./assets/capabilities/capabilities03.svg"
+    },
+    {
+      "title": "4. Landing Pages",
+      "description": "Structure, clarity, and strong CTAs. Pages designed to turn visitors into leads.",
+      "image": "./assets/capabilities/capabilities04.svg"
+    },
+    {
+      "title": "5. Performance + SEO Basics",
+      "description": "Speed, Core Web Vitals, and technical SEO hygiene to help your site load fast and index cleanly.",
+      "image": "./assets/capabilities/capabilities05.svg"
+    },
+    {
+      "title": "6. GA4 Tracking",
+      "description": "Events, funnels, and conversion tracking. Know what users do before they click \"Get a Quote\".",
+      "image": "./assets/capabilities/capabilities06.svg"
+    },
+    {
+      "title": "7. Headless CMS",
+      "description": "Structured content and a clean workflow. Update pages without touching code.",
+      "image": "./assets/capabilities/capabilities07.svg"
+    },
+    {
+      "title": "8. Stripe Payments",
+      "description": "Checkout, webhooks, and basic back-office flows. Accept payments with confidence.",
+      "image": "./assets/capabilities/capabilities08.svg"
+    },
+    {
+      "title": "9. Python Automations",
+      "description": "Automations, internal tools, and data workflows that reduce manual work and keep operations clean.",
+      "image": "./assets/capabilities/capabilities09.svg"
+    }
+  ],
+  "pricingCards": [
+    {
+      "title": "Landing Page",
+      "badge": "Quick Start",
+      "description": "For launches and campaigns. Clear structure, fast load, and tracking that actually answers questions.",
+      "price": "€1,500 – €4,000",
+      "note": "1-3 weeks delivery",
+      "star": "./assets/star_card.svg",
+      "features": [
+        "Conversion first structure and copy guidance",
+        "Custom design direction and key components",
+        "Next.js + TypeScript + SCSS implementation",
+        "GA4 events + basic GTM setup",
+        "Performance baseline and Core Web Vitals focus",
+        "Forms and lead delivery integration",
+        "2 revision rounds within scope"
+      ]
+    },
+    {
+      "title": "Marketing Site",
+      "badge": "Most Popular",
+      "description": "Multi-page site built to scale. Design, content workflow, analytics, integrations, and a reliable launch pipeline.",
+      "price": "€3,500 – €9,000",
+      "note": "3-6 weeks delivery",
+      "star": "./assets/star_card.svg",
+      "features": [
+        "Multi-page UX and component system",
+        "Custom Next.js build with clean architecture",
+        "Headless CMS content workflow (scoped)",
+        "Analytics plan + GA4 event tracking",
+        "Performance budget and optimization pass",
+        "Technical SEO essentials and indexing hygiene",
+        "3 revision rounds within scope"
+      ]
+    },
+    {
+      "title": "Monthly Support",
+      "description": "Ongoing updates and improvements. A calm way to keep things fast, stable, and evolving over time.",
+      "price": "€400 – €1,200",
+      "note": "Depends on hours and SLA",
+      "star": "./assets/star_card.svg",
+      "features": [
+        "Content and small layout updates",
+        "Bug fixes and maintenance",
+        "Small feature iterations",
+        "Performance checks and quick wins",
+        "Analytics review and event adjustments",
+        "Priority response window",
+        "Optional automation help when it fits"
+      ]
+    }
+  ],
+  "caseStudies": [
+    {
+      "image": "./assets/news_articles/news04.svg",
+      "category": "Event Website",
+      "title": "Tiny Tune Space",
+      "description": "Multilingual event website with Stripe payments and a headless CMS style content workflow.",
+      "tags": ["Multilingual", "Stripe", "Google Analytics", "Headless CMS", "API"]
+    },
+    {
+      "image": "./assets/news_articles/news05.svg",
+      "category": "Enterprise",
+      "title": "Python Automation & Data Workflows (NDA)",
+      "description": "Enterprise Python automation project (NDA) focused on internal tools, data workflows, and automated reporting.",
+      "tags": ["Python", "Automation", "API", "Data", "Reporting", "NDA"]
+    }
+  ],
+  "blogPosts": [
+    {
+      "image": "./assets/news_articles/news01.svg",
+      "category": "Development",
+      "title": "From Figma to Next.js: A Workflow That Ships",
+      "description": "How I turn design into production code without the usual chaos, delays, and rework."
+    },
+    {
+      "image": "./assets/news_articles/news02.svg",
+      "category": "Analytics",
+      "title": "GA4 Events: What to Track on a Marketing Site",
+      "description": "A simple event map: views, clicks, funnels, and purchases, so you measure what matters."
+    },
+    {
+      "image": "./assets/news_articles/news03.svg",
+      "category": "Automations",
+      "title": "Python Automations That Save Hours Every Week",
+      "description": "Reporting, data cleanup, and internal tools. What works, what breaks, and how to keep it stable."
+    }
+  ],
+  "faqData": [
+    {
+      "question": "Do you handle the full build, or only development?",
+      "answer": "Full build if needed: structure, UI based on references, development, integrations, and launch. If you already have a design, we can implement it cleanly in Next.js."
+    },
+    {
+      "question": "Can we start with references or a rough draft instead of a full design?",
+      "answer": "Yes. Many projects start with a moodboard, a few reference sites, and a simple draft. We turn that into a clear structure and a modern UI, then ship production-ready code."
+    },
+    {
+      "question": "Can you work with our existing brand and content?",
+      "answer": "Yes. If content is messy, we help structure it into a clear sitemap and sections. If branding is minimal, we can set a clean baseline and keep it consistent across the site."
+    },
+    {
+      "question": "Will the site be fast and SEO friendly?",
+      "answer": "Yes. Performance and technical SEO basics are part of every build: Core Web Vitals, clean markup, metadata, and indexing hygiene. The goal is a site that loads fast and ranks without hacks."
+    },
+    {
+      "question": "Can you integrate payments, forms, analytics, or a CMS?",
+      "answer": "Yes. Common setups include Stripe payments, Google Analytics event tracking, forms to email/CRM, and a headless CMS for easy content updates. Custom API integrations are also possible."
+    },
+    {
+      "question": "What do you need from us to start?",
+      "answer": "Goals, scope, reference examples you like, and access to your domain/tools if they already exist. If you do not have content ready, we can start with structure first and fill details as you go."
+    },
+    {
+      "question": "Do you offer ongoing support after launch?",
+      "answer": "Yes. Ongoing support is available for updates, improvements, monitoring, and new features. You can use it as-needed or on a monthly plan."
+    }
+  ]
+}
