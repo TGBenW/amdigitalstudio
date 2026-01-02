@@ -1,0 +1,53 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.starRight {
+  position: absolute;
+  top: -2.5rem;
+  right: 7rem;
+  transform: translate(-50%, -50%);
+  
+  @include md {
+    top: 30%;
+    right: 5%;
+  }
+}
+
+.starLeft {
+  position: absolute;
+  bottom: 0;
+  left: 2.5rem;
+  transform: translate(-50%, -50%);
+  
+  @include md {
+    left: 18rem;
+  }
+}
+
+.starBottom {
+  position: absolute;
+  top: 110%;
+  right: 7rem;
+  transform: translate(-50%, -50%);
+  
+  @include md {
+    right: 33%;
+  }
+}
+
+.starLarge {
+  @include md {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+.starSmall {
+  width: 1rem;
+  height: 1rem;
+}
+
+.starMedium {
+  width: 1.5rem;
+  height: 1.5rem;
+}
