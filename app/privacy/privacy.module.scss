@@ -1,0 +1,61 @@
+.page {
+  min-height: 100vh;
+  background: #0a0a0f;
+  color: #f0efeb;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  color: #f0efeb;
+  opacity: 0.75;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  opacity: 1;
+}
+
+.container h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
+}
+
+.meta {
+  opacity: 0.75;
+  margin-bottom: 2rem;
+}
+
+.container section {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(240, 239, 235, 0.12);
+  border-radius: 12px;
+  background: rgba(148, 72, 199, 0.07);
+}
+
+.container h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.6rem;
+}
+
+.container p {
+  margin: 0 0 0.7rem;
+  line-height: 1.6;
+}
+
+.container p:last-child {
+  margin-bottom: 0;
+}
+
+.container a {
+  color: #f0efeb;
+  text-underline-offset: 2px;
+}
