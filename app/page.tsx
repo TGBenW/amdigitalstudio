@@ -1,6 +1,7 @@
 "use client";
 
 import ScrollToTopButton from "../components/ui/ScrollToTopButton";
+import { LanguageProvider } from "../lib/i18n";
 import BeautifulWorks from "../section/BeautifulWorks";
 import Cases from "../section/Cases";
 import Blog from "../section/Blog";
@@ -16,42 +17,44 @@ import Testimonial from "../section/Testimonial";
 
 export default function HomePage() {
   return (
-    <div className="bg-background">
-      <div className="container">
-        <Header />
-        <div>
-          <Hero />
-          <Stack />
-          <HowItWorks />
-        </div>
-      </div>
-      <div className="bg-white">
+    <LanguageProvider>
+      <div className="bg-background">
         <div className="container">
-          <BeautifulWorks />
+          <Header />
+          <div>
+            <Hero />
+            <Stack />
+            <HowItWorks />
+          </div>
         </div>
-      </div>
-      <div className="container">
-        <Capabilities />
-      </div>
-      <div>
-        <div>
-          <Testimonial />
+        <div className="bg-white">
+          <div className="container">
+            <BeautifulWorks />
+          </div>
         </div>
-      </div>
-      <div className="container">
-        <Pricing />
-        <Cases />
-        <Blog />
-      </div>
-      <div className="bg-white">
         <div className="container">
-          <FAQ />
+          <Capabilities />
         </div>
+        <div>
+          <div>
+            <Testimonial />
+          </div>
+        </div>
+        <div className="container">
+          <Pricing />
+          <Cases />
+          <Blog />
+        </div>
+        <div className="bg-white">
+          <div className="container">
+            <FAQ />
+          </div>
+        </div>
+        <div className="container">
+          <Footer />
+        </div>
+        <ScrollToTopButton />
       </div>
-      <div className="container">
-        <Footer />
-      </div>
-      <ScrollToTopButton />
-    </div>
+    </LanguageProvider>
   );
 }
