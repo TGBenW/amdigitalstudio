@@ -74,7 +74,7 @@
     },
     {
       "title": "3. Next.js Builds",
-      "description": "React, TypeScript, SCSS. Fast, maintainable front-end with a production-ready setup. Support and updates available.",
+      "description": "React, TypeScript, SCSS. Stable, maintainable front-end with a production-ready setup. Support and updates available.",
       "image": "./assets/capabilities/capabilities03.svg"
     },
     {
@@ -84,7 +84,7 @@
     },
     {
       "title": "5. Performance + SEO Basics",
-      "description": "Speed, Core Web Vitals, and technical SEO hygiene to help your site load fast and index cleanly.",
+      "description": "Speed, Core Web Vitals, and technical SEO hygiene to help your site load smoothly and index cleanly.",
       "image": "./assets/capabilities/capabilities05.svg"
     },
     {
@@ -110,11 +110,28 @@
   ],
   "pricingCards": [
     {
+      "title": "Entry Package",
+      "badge": "Launch in 5-7 days",
+      "description": "A compact website to launch quickly. Clear structure, focused design, and clean implementation.",
+      "price": "from €890",
+      "note": "5-7 business days",
+      "featured": false,
+      "star": "./assets/star_card.svg",
+      "features": [
+        "One-page structure (up to 6-8 sections)",
+        "Design direction based on your references",
+        "Responsive Next.js + TypeScript implementation",
+        "Basic technical SEO setup + GA4 baseline",
+        "Contact form setup",
+        "1 revision round within scope"
+      ]
+    },
+    {
       "title": "Landing Page",
-      "badge": "Quick Start",
-      "description": "For launches and campaigns. Clear structure, fast load, and tracking that actually answers questions.",
-      "price": "€1,500 – €4,000",
+      "description": "For launches and campaigns. Clear structure, smooth load, and tracking that actually answers questions.",
+      "price": "from €1,200",
       "note": "1-3 weeks delivery",
+      "featured": false,
       "star": "./assets/star_card.svg",
       "features": [
         "Conversion first structure and copy guidance",
@@ -127,11 +144,12 @@
       ]
     },
     {
-      "title": "Multi-page Site",
+      "title": "Multi-page Website",
       "badge": "Most Popular",
       "description": "Multi-page site built to scale. Design, content workflow, analytics, integrations, and a reliable launch pipeline.",
-      "price": "€3,500 – €9,000",
+      "price": "from €2,500",
       "note": "3-6 weeks delivery",
+      "featured": true,
       "star": "./assets/star_card.svg",
       "features": [
         "Multi-page UX and component system",
@@ -145,18 +163,18 @@
     },
     {
       "title": "Monthly Support",
-      "description": "Ongoing updates and improvements. A calm way to keep things fast, stable, and evolving over time.",
-      "price": "€400 – €1,200",
-      "note": "Depends on hours and SLA",
+      "description": "Ongoing updates and improvements. A calm way to keep things stable and evolving over time.",
+      "price": "from €100",
+      "note": "Entry support plan",
+      "featured": false,
       "star": "./assets/star_card.svg",
       "features": [
-        "Content and small layout updates",
-        "Bug fixes and maintenance",
-        "Small feature iterations",
-        "Performance checks and quick wins",
-        "Analytics review and event adjustments",
-        "Priority response window",
-        "Optional automation help when it fits"
+        "Up to 1 hour of small updates per month",
+        "Content and minor layout edits",
+        "Basic bug fixes and maintenance",
+        "Quarterly performance and analytics check",
+        "Response window by queue",
+        "Can be upgraded to a higher support tier"
       ]
     }
   ],
@@ -210,8 +228,8 @@
       "answer": "Yes. If content is messy, we help structure it into a clear sitemap and sections. If branding is minimal, we can set a clean baseline and keep it consistent across the site."
     },
     {
-      "question": "Will the site be fast and SEO friendly?",
-      "answer": "Yes. Performance and technical SEO basics are part of every build: Core Web Vitals, clean markup, metadata, and indexing hygiene. The goal is a site that loads fast and ranks without hacks."
+      "question": "Will the site be high-performance and SEO friendly?",
+      "answer": "Yes. Performance and technical SEO basics are part of every build: Core Web Vitals, clean markup, metadata, and indexing hygiene. The goal is a site that loads smoothly and ranks without hacks."
     },
     {
       "question": "Can you integrate payments, forms, analytics, or a CMS?",
