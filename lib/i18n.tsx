@@ -152,6 +152,7 @@ type Locale = {
       description: string;
       price: string;
       note: string;
+      featured?: boolean;
       features: string[];
     }>;
     caseStudies: Array<{
@@ -189,7 +190,7 @@ const en: Locale = {
       connector: "and",
       highlightTwo: "brings you leads",
       subtitle:
-        "We design and build fast marketing websites, add analytics, payments, CMS, and automations.",
+        "We design and build marketing websites, add analytics, payments, CMS, and automations.",
       location: "Based in Riga, Latvia. Working worldwide.",
     },
     stack: {
@@ -222,13 +223,14 @@ const en: Locale = {
     },
     beautifulWorks: {
       title: "Selected Work",
-      description: "We help businesses grow with clear, fast, and professional websites that convert.",
+      description:
+        "We help businesses grow with clear, conversion-focused, and professional websites that convert.",
     },
     capabilities: {
       category: "our services",
       revealText: "What we can build for you...",
       experienceLabel: "8+ YEARS EXPERIENCE",
-      experienceTitle: "Designing and shipping fast marketing websites and web products",
+      experienceTitle: "Designing and shipping conversion-focused marketing websites and web products",
       description:
         "From first draft to launch, we build conversion-focused websites with analytics, integrations, and payments. Clean custom code when performance, speed, and flexibility matter.",
       cta: "See Pricing",
@@ -241,7 +243,7 @@ const en: Locale = {
         {
           name: "TinyTunes Space",
           meta: "Launch",
-          body: "Fast, clean, and exactly on point. The site feels premium, loads instantly, and the whole flow is easy to understand.",
+          body: "Clean, precise, and exactly on point. The site feels premium, loads instantly, and the whole flow is easy to understand.",
           img: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?q=80&w=160&auto=format&fit=crop",
         },
         {
@@ -277,7 +279,7 @@ const en: Locale = {
         {
           name: "NDA Client",
           meta: "Performance",
-          body: "Noticeably faster site with better Lighthouse results. Practical improvements that actually move the needle.",
+          body: "Noticeably better performance and stronger Lighthouse results. Practical improvements that actually move the needle.",
           img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=160&auto=format&fit=crop",
         },
         {
@@ -317,7 +319,7 @@ const en: Locale = {
       rightTitle: "Get in Touch",
       inquiriesLabel: "For project inquiries",
       quickChatLabel: "Quick chat",
-      followLabel: "Follow",
+      followLabel: "Follow us",
       replyTime: "Usually reply within 24 hours",
       form: {
         name: "Name",
@@ -355,7 +357,7 @@ const en: Locale = {
       heroDescriptionSecondLine: "Get a quote within 1-2 business days.",
       cta: "Get a Quote",
       description:
-        "AM Digital Studio - building fast, clear, conversion-focused websites from Riga, Latvia. Working worldwide.",
+        "AM Digital Studio - building clear, conversion-focused websites from Riga, Latvia. Working worldwide.",
       nav: [
         { href: "#process", text: "Process" },
         { href: "#services", text: "Services" },
@@ -389,6 +391,7 @@ const en: Locale = {
       description: item.description,
       price: item.price,
       note: item.note,
+      featured: item.featured,
       features: item.features,
     })),
     caseStudies: rawData.caseStudies.map((item) => ({
@@ -429,7 +432,7 @@ const ru: Locale = {
       connector: "",
       highlightTwo: "привлекают клиентов",
       subtitle:
-        "Проектируем и запускаем быстрые маркетинговые сайты и лендинги, подключаем GA4, платежи, CMS и автоматизации.",
+        "Проектируем и запускаем маркетинговые сайты и лендинги, подключаем GA4, платежи, CMS и автоматизации.",
       location: "Базируемся в Риге, Латвия. Работаем по всему миру.",
     },
     stack: {
@@ -463,13 +466,13 @@ const ru: Locale = {
     beautifulWorks: {
       title: "Избранные проекты",
       description:
-        "Помогаем бизнесу расти за счет понятных, быстрых и профессиональных сайтов, которые конвертируют.",
+        "Помогаем бизнесу расти за счет понятных, аккуратных и профессиональных сайтов, которые конвертируют.",
     },
     capabilities: {
       category: "наши услуги",
       revealText: "Что мы можем сделать для вас...",
       experienceLabel: "8+ ЛЕТ ОПЫТА",
-      experienceTitle: "Проектируем и запускаем быстрые сайты и веб-продукты",
+      experienceTitle: "Проектируем и запускаем маркетинговые сайты и веб-продукты",
       description:
         "От идеи до релиза создаем сайты с фокусом на конверсию: аналитика, интеграции и платежи. Чистый кастомный код для скорости, SEO и гибкости.",
       cta: "Смотреть цены",
@@ -482,7 +485,7 @@ const ru: Locale = {
         {
           name: "TinyTunes Space",
           meta: "Запуск",
-          body: "Быстро, чисто и точно в цель. Сайт ощущается премиально, загружается мгновенно, а весь путь пользователя понятен.",
+          body: "Четко, чисто и точно в цель. Сайт ощущается премиально, загружается мгновенно, а весь путь пользователя понятен.",
           img: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?q=80&w=160&auto=format&fit=crop",
         },
         {
@@ -518,20 +521,20 @@ const ru: Locale = {
         {
           name: "NDA Client",
           meta: "Производительность",
-          body: "Сайт стал заметно быстрее, показатели Lighthouse выросли. Практические улучшения, которые реально дают результат.",
+          body: "Производительность сайта заметно выросла, показатели Lighthouse стали выше. Практические улучшения, которые реально дают результат.",
           img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=160&auto=format&fit=crop",
         },
         {
           name: "NDA Client",
           meta: "Поддержка",
-          body: "Быстрые правки, четкая коммуникация и обновления без поломок. Удобно работать в долгую.",
+          body: "Оперативные правки, четкая коммуникация и обновления без поломок. Удобно работать в долгую.",
           img: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=160&auto=format&fit=crop",
         },
       ],
     },
     pricing: {
       category: "Прозрачные цены",
-      title: "Стоимость проекта фиксируем после согласования объема.",
+      title: "Цена проекта по согласованному объему",
       description:
         "Итоговая стоимость зависит от объема, готовности контента, интеграций и сроков.",
       cardCta: "Обсудить проект",
@@ -596,7 +599,7 @@ const ru: Locale = {
       heroDescriptionSecondLine: "Оценка в течение 1-2 рабочих дней.",
       cta: "Обсудить проект",
       description:
-        "AM Digital Studio — разрабатываем быстрые и понятные сайты в Риге, Латвия. Работаем по всему миру.",
+        "AM Digital Studio — разрабатываем понятные и продуманные сайты в Риге, Латвия. Работаем по всему миру.",
       nav: [
         { href: "#process", text: "Процесс" },
         { href: "#services", text: "Услуги" },
@@ -682,7 +685,7 @@ const ru: Locale = {
       },
       {
         title: "3. Разработка на Next.js",
-        description: "React, TypeScript, SCSS. Быстрая и поддерживаемая фронтенд-разработка с production-подходом.",
+        description: "React, TypeScript, SCSS. Надежная и поддерживаемая фронтенд-разработка с production-подходом.",
       },
       {
         title: "4. Лендинги",
@@ -690,7 +693,7 @@ const ru: Locale = {
       },
       {
         title: "5. Производительность + базовое SEO",
-        description: "Скорость, Core Web Vitals и техническая SEO-гигиена для быстрой загрузки и корректной индексации.",
+        description: "Скорость, Core Web Vitals и техническая SEO-гигиена для высокой скорости загрузки и корректной индексации.",
       },
       {
         title: "6. GA4-аналитика",
@@ -711,11 +714,27 @@ const ru: Locale = {
     ],
     pricingCards: [
       {
+        title: "Сайт \"под ключ\"",
+        badge: "Старт за 5-7 дней",
+        description: "Компактный сайт для уверенного старта: структура, дизайн по референсам и аккуратный запуск.",
+        price: "от €890",
+        note: "Срок: 5-7 рабочих дней",
+        featured: false,
+        features: [
+          "Одностраничный сайт (до 6-8 блоков)",
+          "Дизайн-направление на основе ваших референсов",
+          "Адаптивная реализация на Next.js + TypeScript",
+          "Базовое SEO и базовая настройка GA4",
+          "Форма обратной связи",
+          "1 итерация правок в рамках согласованного объема",
+        ],
+      },
+      {
         title: "Лендинг",
-        badge: "Быстрый старт",
         description: "Для запусков и кампаний. Четкая структура, высокая скорость и трекинг, который реально полезен.",
-        price: "€1,500 – €4,000",
+        price: "от €1,200",
         note: "Срок: 1-3 недели",
+        featured: false,
         features: [
           "Структура и гайд по текстам с фокусом на конверсию",
           "Индивидуальное дизайн-направление и ключевые компоненты",
@@ -730,8 +749,9 @@ const ru: Locale = {
         title: "Многостраничный сайт",
         badge: "Самый популярный",
         description: "Многостраничный сайт с запасом для роста. Дизайн, контент-процесс, аналитика и надежный релиз.",
-        price: "€3,500 – €9,000",
+        price: "от €2,500",
         note: "Срок: 3-6 недель",
+        featured: true,
         features: [
           "UX многостраничной структуры и компонентная система",
           "Индивидуальная разработка на Next.js с чистой архитектурой",
@@ -744,17 +764,17 @@ const ru: Locale = {
       },
       {
         title: "Ежемесячная поддержка",
-        description: "Постоянные улучшения и сопровождение. Спокойный формат, чтобы сайт оставался быстрым и стабильным.",
-        price: "€400 – €1,200",
-        note: "Зависит от часов и SLA",
+        description: "Постоянные улучшения и сопровождение. Спокойный формат, чтобы сайт оставался стабильным и актуальным.",
+        price: "от €100",
+        note: "Входной план поддержки",
+        featured: false,
         features: [
-          "Обновления контента и небольшие изменения в верстке",
-          "Исправление ошибок и техподдержка",
-          "Небольшие итерации по функционалу",
-          "Проверки производительности и быстрые улучшения",
-          "Ревизия аналитики и корректировка событий",
-          "Приоритетное окно ответов",
-          "Опциональная помощь с автоматизациями по задаче",
+          "До 1 часа небольших задач в месяц",
+          "Обновления контента и мелкие правки",
+          "Базовые исправления и техподдержка",
+          "Квартальная проверка производительности и аналитики",
+          "Ответ в порядке очереди",
+          "Можно перейти на расширенный план",
         ],
       },
     ],
@@ -792,7 +812,7 @@ const ru: Locale = {
     faqData: [
       {
         question: "Вы делаете проект полностью или только разработку?",
-        answer: "При необходимости — полный цикл: структура, UI по референсам, разработка, интеграции и запуск. Если дизайн уже есть, аккуратно и быстро реализуем его на Next.js.",
+        answer: "При необходимости — полный цикл: структура, UI по референсам, разработка, интеграции и запуск. Если дизайн уже есть, аккуратно и без лишних задержек реализуем его на Next.js.",
       },
       {
         question: "Можно начать с референсов или черновика без полного дизайна?",
@@ -803,7 +823,7 @@ const ru: Locale = {
         answer: "Да. Если контент неструктурирован, поможем собрать понятную карту сайта и разделов. Если бренд минимальный — зададим чистую базу и удержим консистентность.",
       },
       {
-        question: "Сайт будет быстрым и SEO-оптимизированным?",
+        question: "Сайт будет производительным и SEO-оптимизированным?",
         answer: "Да. Производительность и техническое SEO — обязательная часть каждого проекта: Core Web Vitals, корректная разметка, метаданные и чистая индексация.",
       },
       {
@@ -842,7 +862,7 @@ const lv: Locale = {
       connector: "un",
       highlightTwo: "piesaista klientus",
       subtitle:
-        "Mēs veidojam ātras mārketinga mājaslapas, pieslēdzam analītiku, maksājumus, CMS un automatizāciju.",
+        "Mēs veidojam mārketinga mājaslapas, pieslēdzam analītiku, maksājumus, CMS un automatizāciju.",
       location: "Bāzēti Rīgā, Latvijā. Strādājam visā pasaulē.",
     },
     stack: {
@@ -875,15 +895,15 @@ const lv: Locale = {
     },
     beautifulWorks: {
       title: "Atlasītie darbi",
-      description: "Mēs palīdzam biznesam augt ar skaidrām, ātrām un profesionālām mājaslapām, kas konvertē.",
+      description: "Mēs palīdzam biznesam augt ar skaidrām, pārdomātām un profesionālām mājaslapām, kas konvertē.",
     },
     capabilities: {
       category: "mūsu pakalpojumi",
       revealText: "Ko varam izveidot tieši jums...",
       experienceLabel: "8+ GADU PIEREDZE",
-      experienceTitle: "Projektējam un piegādājam ātras mājaslapas un tīmekļa produktus",
+      experienceTitle: "Projektējam un piegādājam mārketinga mājaslapas un tīmekļa produktus",
       description:
-        "No pirmās idejas līdz palaišanai veidojam konversijām orientētas mājaslapas ar analītiku, SEO pamatiem, integrācijām un maksājumiem. Tīrs pielāgots kods, kad svarīga ir veiktspēja, ātrums un elastība.",
+        "No pirmās idejas līdz palaišanai veidojam konversijām orientētas mājaslapas ar analītiku, SEO pamatiem, integrācijām un maksājumiem. Tīrs pielāgots kods, kad svarīga ir veiktspēja, uzticamība un elastība.",
       cta: "Skatīt cenas",
     },
     testimonial: {
@@ -894,7 +914,7 @@ const lv: Locale = {
         {
           name: "TinyTunes Space",
           meta: "Palaišana",
-          body: "Ātri, tīri un precīzi. Mājaslapa izskatās premium līmenī, ielādējas momentāni, un visa lietotāja plūsma ir skaidra.",
+          body: "Precīzi, tīri un pārdomāti. Mājaslapa izskatās premium līmenī, ielādējas momentāni, un visa lietotāja plūsma ir skaidra.",
           img: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?q=80&w=160&auto=format&fit=crop",
         },
         {
@@ -930,20 +950,20 @@ const lv: Locale = {
         {
           name: "NDA Client",
           meta: "Veiktspēja",
-          body: "Mājaslapa kļuva ievērojami ātrāka ar labākiem Lighthouse rādītājiem. Praktiski uzlabojumi ar reālu ietekmi.",
+          body: "Mājaslapas veiktspēja ievērojami uzlabojās, un Lighthouse rādītāji kļuva labāki. Praktiski uzlabojumi ar reālu ietekmi.",
           img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=160&auto=format&fit=crop",
         },
         {
           name: "NDA Client",
           meta: "Atbalsts",
-          body: "Ātri labojumi, skaidra komunikācija un atjauninājumi bez regresijām. Ērta sadarbība ilgtermiņā.",
+          body: "Operatīvi labojumi, skaidra komunikācija un atjauninājumi bez regresijām. Ērta sadarbība ilgtermiņā.",
           img: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=160&auto=format&fit=crop",
         },
       ],
     },
     pricing: {
       category: "Caurspīdīgas cenas",
-      title: "Projekta cenu nosakām pēc saskaņota apjoma.",
+      title: "Projekta cena pēc saskaņota apjoma",
       description:
         "Gala piedāvājums ir atkarīgs no apjoma, satura gatavības, integrācijām un termiņa.",
       cardCta: "Apspriest projektu",
@@ -1008,7 +1028,7 @@ const lv: Locale = {
       heroDescriptionSecondLine: "Piedāvājums 1-2 darba dienu laikā.",
       cta: "Apspriest projektu",
       description:
-        "AM Digital Studio — izstrādājam ātras, skaidras un konversijām orientētas mājaslapas no Rīgas, Latvijas. Strādājam visā pasaulē.",
+        "AM Digital Studio — izstrādājam skaidras un konversijām orientētas mājaslapas no Rīgas, Latvijas. Strādājam visā pasaulē.",
       nav: [
         { href: "#process", text: "Process" },
         { href: "#services", text: "Pakalpojumi" },
@@ -1094,7 +1114,7 @@ const lv: Locale = {
       },
       {
         title: "3. Next.js izstrāde",
-        description: "React, TypeScript, SCSS. Ātrs un uzturams front-end ar production līmeņa pieeju.",
+        description: "React, TypeScript, SCSS. Stabils un uzturams front-end ar production līmeņa pieeju.",
       },
       {
         title: "4. Piesaistes lapas",
@@ -1102,7 +1122,7 @@ const lv: Locale = {
       },
       {
         title: "5. Veiktspēja + SEO pamati",
-        description: "Ātrums, Core Web Vitals un tehniskā SEO higiēna, lai lapa ielādētos ātri un korekti indeksētos.",
+        description: "Veiktspēja, Core Web Vitals un tehniskā SEO higiēna, lai lapa ielādētos vienmērīgi un korekti indeksētos.",
       },
       {
         title: "6. GA4 analītika",
@@ -1123,11 +1143,27 @@ const lv: Locale = {
     ],
     pricingCards: [
       {
-        title: "Piesaistes lapa",
-        badge: "Ātrs starts",
-        description: "Piemērots kampaņām un palaišanai. Skaidra struktūra, ātra ielāde un analītika, kas dod skaidrību.",
-        price: "€1,500 – €4,000",
+        title: "Sākuma pakete",
+        badge: "Starts 5-7 dienās",
+        description: "Kompakta mājaslapa skaidram startam: struktūra, dizaina virziens un korekta palaišana.",
+        price: "no €890",
+        note: "Termiņš: 5-7 darba dienas",
+        featured: false,
+        features: [
+          "Vienas lapas struktūra (līdz 6-8 blokiem)",
+          "Dizaina virziens pēc jūsu atsaucēm",
+          "Adaptīva izstrāde ar Next.js + TypeScript",
+          "Pamata SEO un GA4 pamata uzstādīšana",
+          "Kontakta formas iestatīšana",
+          "1 labojumu iterācija saskaņotā apjoma ietvaros",
+        ],
+      },
+      {
+        title: "Lendings",
+        description: "Piemērots kampaņām un palaišanai. Skaidra struktūra, stabila ielāde un analītika, kas dod skaidrību.",
+        price: "no €1,200",
         note: "Termiņš: 1-3 nedēļas",
+        featured: false,
         features: [
           "Konversijām orientēta struktūra un tekstu vadlīnijas",
           "Pielāgota dizaina virziens un galvenie komponenti",
@@ -1139,11 +1175,12 @@ const lv: Locale = {
         ],
       },
       {
-        title: "Daudzlapu mājaslapa",
+        title: "Daudzlapu vietne",
         badge: "Populārākais",
         description: "Daudzlapu risinājums izaugsmei. Dizains, satura process, analītika, integrācijas un stabila palaišana.",
-        price: "€3,500 – €9,000",
+        price: "no €2,500",
         note: "Termiņš: 3-6 nedēļas",
+        featured: true,
         features: [
           "Daudzlapu UX struktūra un komponentu sistēma",
           "Pielāgota Next.js izstrāde ar tīru arhitektūru",
@@ -1156,17 +1193,17 @@ const lv: Locale = {
       },
       {
         title: "Ikmēneša atbalsts",
-        description: "Nepārtraukti uzlabojumi un uzturēšana. Mierīgs formāts, lai lapa saglabātu ātrumu un stabilitāti.",
-        price: "€400 – €1,200",
-        note: "Atkarīgs no stundu apjoma un SLA",
+        description: "Nepārtraukti uzlabojumi un uzturēšana. Mierīgs formāts, lai lapa saglabātu stabilitāti un attīstītos.",
+        price: "no €100",
+        note: "Ieejas atbalsta plāns",
+        featured: false,
         features: [
-          "Satura un nelielu izkārtojuma atjauninājumi",
-          "Kļūdu labojumi un uzturēšana",
-          "Nelielas funkcionalitātes iterācijas",
-          "Veiktspējas pārbaudes un ātrie uzlabojumi",
-          "Analītikas pārskatīšana un notikumu korekcijas",
-          "Prioritārs atbildes logs",
-          "Papildu automatizāciju palīdzība, ja atbilst uzdevumam",
+          "Līdz 1 stundai nelielu uzdevumu mēnesī",
+          "Satura atjauninājumi un nelielas korekcijas",
+          "Pamata kļūdu labošana un uzturēšana",
+          "Ceturkšņa veiktspējas un analītikas pārbaude",
+          "Atbildes logs rindas kārtībā",
+          "Iespēja pāriet uz paplašinātu plānu",
         ],
       },
     ],
@@ -1215,7 +1252,7 @@ const lv: Locale = {
         answer: "Jā. Ja saturs ir nesakārtots, palīdzam izveidot saprotamu lapas struktūru. Ja zīmols ir minimāls, uzliekam tīru bāzi un nodrošinām konsekvenci.",
       },
       {
-        question: "Vai mājaslapa būs ātra un SEO draudzīga?",
+        question: "Vai mājaslapa būs veiktspējīga un SEO draudzīga?",
         answer: "Jā. Veiktspēja un tehniskā SEO bāze ir katra projekta daļa: Core Web Vitals, semantiska struktūra, metadati un korekta indeksācija.",
       },
       {
@@ -1282,6 +1319,7 @@ function buildSiteData(locale: Locale): LocalizedSiteData {
       description: locale.data.pricingCards[index]?.description ?? item.description,
       price: locale.data.pricingCards[index]?.price ?? item.price,
       note: locale.data.pricingCards[index]?.note ?? item.note,
+      featured: locale.data.pricingCards[index]?.featured ?? item.featured,
       features: locale.data.pricingCards[index]?.features ?? item.features,
     })),
     caseStudies: rawData.caseStudies.map((item, index) => ({
