@@ -1,0 +1,95 @@
+// ===========================================
+// MIXINS
+// ===========================================
+
+// Breakpoint values (hardcoded for module use)
+$_bp-sm: 640px;
+$_bp-md: 768px;
+$_bp-lg: 1024px;
+$_bp-xl: 1280px;
+$_bp-2xl: 1536px;
+
+// Media queries
+@mixin sm {
+  @media screen and (min-width: $_bp-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (min-width: $_bp-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (min-width: $_bp-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media screen and (min-width: $_bp-xl) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media screen and (min-width: $_bp-2xl) {
+    @content;
+  }
+}
+
+// Flexbox helpers
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Container
+@mixin container {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Transition
+@mixin transition($property: all, $duration: 0.3s) {
+  transition: $property $duration ease-in-out;
+}
+
+// Text truncate
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Absolute center
+@mixin absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Hide scrollbar
+@mixin hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
