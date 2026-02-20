@@ -1,0 +1,121 @@
+// ===========================================
+// COMPONENTS
+// ===========================================
+
+// Glow effect
+.glow {
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 200px 130px $primary;
+  
+  @include md {
+    box-shadow: 0 0 1000px 200px rgba($primary, 0.69);
+  }
+}
+
+// Container
+.container {
+  @include container;
+}
+
+// Background colors
+.bg-background {
+  background-color: $background;
+}
+
+.bg-white {
+  background-color: $surface-light;
+}
+
+.bg-card {
+  background-color: $bg-card;
+}
+
+// Text colors
+.text-white {
+  color: $text;
+}
+
+.text-primary {
+  color: $primary;
+}
+
+.text-background {
+  color: $background;
+}
+
+// Button base
+.btn {
+  @include flex-center;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: $radius-lg;
+  background-color: $primary;
+  font-weight: 600;
+  color: $text-soft;
+  @include transition;
+
+  &:focus-visible {
+    outline: 2px solid rgba($text-soft, 0.9);
+    outline-offset: 2px;
+  }
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.btn-fake {
+  @include flex-center;
+  border-radius: $radius-lg;
+  background-color: $primary;
+  font-weight: 600;
+  color: $text-soft;
+  @include transition;
+}
+
+// Logo
+.logo {
+  cursor: pointer;
+  
+  p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    
+    @include md {
+      font-size: 1.875rem;
+    }
+    
+    .highlight {
+      color: $primary;
+    }
+  }
+}
+
+// Scroll to top button
+.scroll-to-top {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: $z-50;
+  border-radius: $radius-full;
+  background-color: $primary;
+  padding: 0.5rem;
+  box-shadow: $shadow-lg;
+  
+  .icon {
+    display: block;
+    transform: rotate(0deg);
+    @include transition(transform, $transition-slow);
+    
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+}
