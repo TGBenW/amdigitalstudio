@@ -3,12 +3,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import FadeDown from "../components/animations/FadeDown";
-import { techStack } from "../data.json";
+import { useI18n } from "../lib/i18n";
 import styles from "./Stack.module.scss";
 
 const SPEED_PX_PER_SEC = 90;
 
 export default function Brands() {
+  const { t, data } = useI18n();
   const prefersReducedMotion = useReducedMotion();
 
   const setRef = useRef<HTMLDivElement | null>(null);
@@ -62,9 +63,9 @@ export default function Brands() {
           transition={{ duration: 0.6, ease: "linear", delay: 1 }}
           className={styles.lineLeft}
         />
-        <h2>
-          <FadeDown delay={0.6}>BUILT WITH MODERN TECH</FadeDown>
-        </h2>
+        <FadeDown delay={0.6}>
+          <h2>{t.stack.title}</h2>
+        </FadeDown>
         <motion.hr
           initial={{ translateX: "50%", opacity: 0 }}
           animate={{ translateX: 0, opacity: 1 }}
@@ -89,7 +90,7 @@ export default function Brands() {
           aria-hidden={false}
         >
           <div className={styles.items} ref={setRef}>
-            {techStack.map(({ name, src }, index) => (
+            {data.techStack.map(({ name, src }, index) => (
               <div key={`${name}-${index}`} className={styles.item}>
                 <img src={src} alt={`${name} logo`} />
                 <span>{name}</span>
@@ -98,7 +99,7 @@ export default function Brands() {
           </div>
 
           <div className={styles.items} aria-hidden="true">
-            {techStack.map(({ name, src }, index) => (
+            {data.techStack.map(({ name, src }, index) => (
               <div key={`${name}-dup-${index}`} className={styles.item}>
                 <img src={src} alt="" />
                 <span>{name}</span>
@@ -110,9 +111,9 @@ export default function Brands() {
 
       <div className={styles.footer}>
         <p>
-          Next.js, React, TypeScript, SCSS, headless CMS, Stripe, Google Analytics, and custom APIs.
+          {t.stack.footerLineOne}
           <br className={styles.brDesktop} />
-          Python for automations. Webflow and WordPress when they fit the job.
+          {t.stack.footerLineTwo}
         </p>
       </div>
     </div>
