@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import FadeOnScroll from "../components/animations/FadeOnScroll";
+import { useI18n } from "../lib/i18n";
 import Marquee from "../components/animations/magicui/marquee";
 import TitleDark from "../components/ui/TitleDark";
 import styles from "./Testimonial.module.scss";
@@ -12,57 +13,6 @@ type Review = {
   body: string;
   img: string;
 };
-
-const reviews: Review[] = [
-  {
-    name: "TinyTunes Space",
-    meta: "Launch",
-    body: "Fast, clean, and exactly on point. The site feels premium, loads instantly, and the whole flow is easy to understand.",
-    img: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?q=80&w=160&auto=format&fit=crop",
-  },
-  {
-    name: "voyagesetmoi",
-    meta: "Website",
-    body: "Full rebuild with better structure and visuals. Media is optimized, updates are painless, and everything feels more modern.",
-    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=160&auto=format&fit=crop",
-  },
-  {
-    name: "Georgiy Gudovskiy",
-    meta: "Full Site",
-    body: "Built from scratch: design, development, photo and video handling, optimization, and a smooth final delivery.",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=160&auto=format&fit=crop",
-  },
-  {
-    name: "NDA Client",
-    meta: "Automation",
-    body: "Internal reporting automations saved hundreds of hours. Reliable Python scripts, clean outputs, and stable maintenance.",
-    img: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=160&auto=format&fit=crop",
-  },
-  {
-    name: "NDA Client",
-    meta: "Analytics",
-    body: "Tracking finally makes sense. Events are structured, dashboards are clear, and decisions are based on real behavior.",
-    img: "https://plus.unsplash.com/premium_photo-1661778906556-82ec2021c533?q=80&w=160&auto=format&fit=crop",
-  },
-  {
-    name: "NDA Client",
-    meta: "Payments",
-    body: "Payments flow is smooth and stable. Stripe integration works reliably, with clean back office logic and clear scope.",
-    img: "https://images.unsplash.com/photo-1614890107637-fe96d74acf4b?q=80&w=160&auto=format&fit=crop",
-  },
-  {
-    name: "NDA Client",
-    meta: "Performance",
-    body: "Noticeably faster site with better Lighthouse results. Practical improvements that actually move the needle.",
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=160&auto=format&fit=crop",
-  },
-  {
-    name: "NDA Client",
-    meta: "Support",
-    body: "Quick fixes, clear communication, and updates that do not break things. Easy to work with long term.",
-    img: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=160&auto=format&fit=crop",
-  },
-];
 
 function preloadImages(urls: string[]) {
   return Promise.all(
@@ -102,9 +52,11 @@ const ReviewCard = ({ img, name, meta, body }: Review) => {
 };
 
 export default function Testimonial() {
+  const { t } = useI18n();
   const [ready, setReady] = useState(false);
 
-  const looped = useMemo(() => [...reviews, ...reviews], []);
+  const reviews = t.testimonial.reviews;
+  const looped = useMemo(() => [...reviews, ...reviews], [reviews]);
 
   useEffect(() => {
     let alive = true;
@@ -119,15 +71,15 @@ export default function Testimonial() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [reviews]);
 
   return (
     <div className={styles.testimonial}>
       <FadeOnScroll>
         <TitleDark
-          category="TESTIMONIALS"
-          title="What Clients Say"
-          description="A few short notes from recent projects."
+          category={t.testimonial.category}
+          title={t.testimonial.title}
+          description={t.testimonial.description}
           descriptionStyles={styles.descOpacity}
         />
       </FadeOnScroll>
