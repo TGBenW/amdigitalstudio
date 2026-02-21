@@ -1,44 +1,52 @@
 "use client";
 
 import { FaArrowRight } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import FadeLeft from "../components/animations/FadeLeft";
 import FadeOnScroll from "../components/animations/FadeOnScroll";
 import FadeRight from "../components/animations/FadeRight";
+import { useI18n } from "../lib/i18n";
 import Button from "../components/ui/Button";
-import { designData } from "../data.json";
 import styles from "./HowItWork.module.scss";
 
 export default function HowItWorks() {
-  const screenWidth = typeof window !== "undefined" ? window.innerWidth : 1024;
+  const { t, data } = useI18n();
+  const [isMobile, setIsMobile] = useState(false);
 
-  const AnimationComponentLeft = screenWidth < 768 ? FadeOnScroll : FadeLeft;
-  const AnimationComponentRight = screenWidth < 768 ? FadeOnScroll : FadeRight;
+  useEffect(() => {
+    const update = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    update();
+    window.addEventListener("resize", update, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const AnimationComponentLeft = isMobile ? FadeOnScroll : FadeLeft;
+  const AnimationComponentRight = isMobile ? FadeOnScroll : FadeRight;
   
   return (
     <div className={styles.howItWorks} id="process">
       <div className={styles.intro}>
         <AnimationComponentLeft>
           <div className={styles.left}>
-            <span className={styles.category}>HOW WE WORK</span>
-            <h1>
-              Transparent project pricing, scoped upfront.
-            </h1>
+            <span className={styles.category}>{t.howItWorks.category}</span>
+            <h1>{t.howItWorks.title}</h1>
           </div>
         </AnimationComponentLeft>
         <AnimationComponentRight>
           <div className={styles.right}>
-            <p>
-              Brand, website, CMS, analytics, payments, integrations, automations.
-              One team, one pipeline, ready to launch. Monthly support is optional.
-            </p>
-            <a href="#pricing">
-              <Button text="See Pricing" className={styles.btn} />
-            </a>
+            <p>{t.howItWorks.description}</p>
+            <Button text={t.howItWorks.cta} className={styles.btn} href="#pricing" />
           </div>
         </AnimationComponentRight>
       </div>
       <div className={styles.steps}>
-        {designData.map((item, index) => (
+        {data.designData.map((item, index) => (
           <div key={index} className={styles.stepWrap}>
             <FadeOnScroll delay={index * 0.2}>
               <div className={styles.step}>
@@ -68,47 +76,27 @@ export default function HowItWorks() {
       <div className={styles.cards}>
         <FadeOnScroll delay={0.2}>
           <div className={styles.card}>
-            <h3>Turnaround Time</h3>
+            <h3>{t.howItWorks.turnaroundTitle}</h3>
             <ul>
-              <li>
-                <span className={styles.label}>Response time</span>
-                <span>1-2 business days</span>
-              </li>
-              <li>
-                <span className={styles.label}>Landing page</span>
-                <span>1-3 weeks</span>
-              </li>
-              <li>
-                <span className={styles.label}>Marketing site</span>
-                <span>3-6 weeks</span>
-              </li>
-              <li className={styles.noBorder}>
-                <span className={styles.label}>Web app / complex product</span>
-                <span>6-10+ weeks</span>
-              </li>
+              {t.howItWorks.turnaroundRows.map((row, index) => (
+                <li key={row.label} className={index === t.howItWorks.turnaroundRows.length - 1 ? styles.noBorder : ""}>
+                  <span className={styles.label}>{row.label}</span>
+                  <span>{row.value}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </FadeOnScroll>
         <FadeOnScroll delay={0.4}>
           <div className={styles.card}>
-            <h3>Tools & Communication</h3>
+            <h3>{t.howItWorks.toolsTitle}</h3>
             <ul>
-              <li>
-                <span className={styles.label}>Communication</span>
-                <span>Your preferred messenger</span>
-              </li>
-              <li>
-                <span className={styles.label}>Calls</span>
-                <span>Google Meet / FaceTime</span>
-              </li>
-              <li>
-                <span className={styles.label}>Project tracking</span>
-                <span>Notion / Trello</span>
-              </li>
-              <li className={styles.noBorder}>
-                <span className={styles.label}>Design & files</span>
-                <span>Figma</span>
-              </li>
+              {t.howItWorks.toolsRows.map((row, index) => (
+                <li key={row.label} className={index === t.howItWorks.toolsRows.length - 1 ? styles.noBorder : ""}>
+                  <span className={styles.label}>{row.label}</span>
+                  <span>{row.value}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </FadeOnScroll>
