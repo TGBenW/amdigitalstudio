@@ -13,32 +13,22 @@ import {
 } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
 import FadeOnScroll from "../components/animations/FadeOnScroll";
+import { useI18n } from "../lib/i18n";
 import Button from "../components/ui/Button";
 import Logo from "../components/ui/Logo";
 import styles from "./Footer.module.scss";
 
-const footerLinks = [
-  { href: "#process", text: "Process" },
-  { href: "#services", text: "Services" },
-  { href: "#pricing", text: "Pricing" },
-  { href: "#work", text: "Work" },
-  { href: "#faq", text: "FAQ" },
-];
-
-const legalLinks = [
-  { href: "/privacy", text: "Privacy Policy" },
-];
-
 const socialLinks = [
-  { href: "https://t.me/yourusername", icon: FaTelegram, label: "Telegram" },
-  { href: "https://wa.me/yourphone", icon: FaWhatsapp, label: "WhatsApp" },
-  { href: "https://x.com/yourusername", icon: FaXTwitter, label: "X" },
-  { href: "https://instagram.com/yourusername", icon: FaInstagram, label: "Instagram" },
-  { href: "https://github.com/yourusername", icon: FaGithub, label: "GitHub" },
-  { href: "https://discord.gg/yourserver", icon: FaDiscord, label: "Discord" },
+  { href: "https://t.me/am_digital_studio", icon: FaTelegram, label: "Telegram", active: true },
+  { href: "https://wa.me/37123204492", icon: FaWhatsapp, label: "WhatsApp", active: true },
+  { href: "", icon: FaXTwitter, label: "X", active: false },
+  { href: "", icon: FaInstagram, label: "Instagram", active: false },
+  { href: "https://github.com/TGBenW", icon: FaGithub, label: "GitHub", active: true },
+  { href: "https://discord.com/users/554564355035889665", icon: FaDiscord, label: "Discord", active: true },
 ];
 
 export default function Footer() {
+  const { t } = useI18n();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -56,23 +46,22 @@ export default function Footer() {
       >
         <div>
           <h1 className={styles.heroTitle}>
-            Ready to build
-            <br /> something great?
+            {t.footer.heroTop}
+            <br /> {t.footer.heroBottom}
           </h1>
           <div className={`glow ${styles.glowEffect}`}></div>
           <p className={styles.heroDescription}>
-            Let's talk about your project. <br /> Get a quote within 1-2 business days.
+            {t.footer.heroDescription} <br /> {t.footer.heroDescriptionSecondLine}
           </p>
-          <a href="#pricing" className={styles.ctaLink}>
-            <Button
-              text={
-                <span className={styles.ctaContent}>
-                  Get a Quote <FaCircleArrowRight className={styles.ctaIcon} />
-                </span>
-              }
-              className={styles.ctaBtn}
-            />
-          </a>
+          <Button
+            text={
+              <span className={styles.ctaContent}>
+                {t.footer.cta} <FaCircleArrowRight className={styles.ctaIcon} />
+              </span>
+            }
+            className={styles.ctaBtn}
+            href="#pricing"
+          />
         </div>
       </motion.div>
       <div className={styles.footerContent}>
@@ -82,32 +71,42 @@ export default function Footer() {
               <Logo />
               <FadeOnScroll delay={0.2}>
                 <p className={styles.footerDescription}>
-                  AM Digital Studio - building fast, clear, conversion-focused
-                  websites from Riga, Latvia. Working worldwide.
+                  {t.footer.description}
                 </p>
               </FadeOnScroll>
             </div>
             <div className={styles.contactInfo}>
               <FadeOnScroll delay={0.3}>
                 <a
-                  href="mailto:hello@amdigitalstudio.com"
+                  href={`mailto:${t.common.contactEmail}`}
                   className={styles.emailLink}
                 >
-                  <HiOutlineMail size={20} /> hello@amdigitalstudio.com
+                  <HiOutlineMail size={20} /> {t.common.contactEmail}
                 </a>
               </FadeOnScroll>
               <FadeOnScroll delay={0.5}>
                 <ul className={styles.socialList}>
                   {socialLinks.map((social, index) => (
                     <li key={index}>
-                      <a 
-                        href={social.href} 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                      >
-                        <social.icon size={20} className={styles.socialIcon} />
-                      </a>
+                      {social.active ? (
+                        <a
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={social.label}
+                          className={styles.socialLink}
+                        >
+                          <social.icon size={20} className={styles.socialIcon} />
+                        </a>
+                      ) : (
+                        <span
+                          aria-label={`${social.label} (coming soon)`}
+                          title={`${social.label} (coming soon)`}
+                          className={`${styles.socialLink} ${styles.socialLinkDisabled}`}
+                        >
+                          <social.icon size={20} className={styles.socialIcon} />
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -119,7 +118,7 @@ export default function Footer() {
       <hr className={styles.divider} />
       <div className={styles.footerBottom}>
         <div className={styles.footerLinks}>
-          {footerLinks.map((link, index) => (
+          {t.footer.nav.map((link, index) => (
             <FadeOnScroll key={index} delay={index * 0.1}>
               <a href={link.href} className={styles.footerLink}>
                 {link.text}
@@ -129,16 +128,14 @@ export default function Footer() {
         </div>
         <div className={styles.footerRight}>
           <div className={styles.legalLinks}>
-            {legalLinks.map((link, index) => (
-              <FadeOnScroll key={index} delay={0.5}>
-                <a href={link.href} className={styles.legalLink}>
-                  {link.text}
-                </a>
-              </FadeOnScroll>
-            ))}
+            <FadeOnScroll delay={0.5}>
+              <a href="/privacy" className={styles.legalLink}>
+                {t.footer.privacy}
+              </a>
+            </FadeOnScroll>
           </div>
           <FadeOnScroll delay={0.6}>
-            <span className={styles.copyright}>© 2025 AM Digital Studio</span>
+            <span className={styles.copyright}>{t.footer.copyright}</span>
           </FadeOnScroll>
         </div>
       </div>
