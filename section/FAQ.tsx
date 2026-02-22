@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { 
   VscClose, 
   VscCloudUpload, 
@@ -16,8 +16,8 @@ import {
   FaDiscord 
 } from "react-icons/fa6";
 import FadeUp from "../components/animations/FadeUp";
+import { useI18n } from "../lib/i18n";
 import TitleLight from "../components/ui/TitleLight";
-import { faqData } from "../data.json";
 import styles from "./FAQ.module.scss";
 
 type FormData = {
@@ -51,18 +51,24 @@ const ALLOWED_TYPES = [
 ];
 
 const MESSENGERS = [
-  { icon: FaTelegram, href: "https://t.me/yourusername", label: "Telegram" },
-  { icon: FaWhatsapp, href: "https://wa.me/yourphone", label: "WhatsApp" },
-  { icon: FaDiscord, href: "https://discord.gg/yourserver", label: "Discord" },
+  { icon: FaTelegram, href: "https://t.me/am_digital_studio", label: "Telegram", active: true },
+  { icon: FaWhatsapp, href: "https://wa.me/37123204492", label: "WhatsApp", active: true },
+  { icon: FaDiscord, href: "https://discord.com/users/554564355035889665", label: "Discord", active: true },
 ];
 
 const SOCIALS = [
-  { icon: FaXTwitter, href: "https://x.com/yourusername", label: "X" },
-  { icon: FaInstagram, href: "https://instagram.com/yourusername", label: "Instagram" },
-  { icon: FaGithub, href: "https://github.com/yourusername", label: "GitHub" },
+  { icon: FaXTwitter, href: "", label: "X", active: false },
+  { icon: FaInstagram, href: "", label: "Instagram", active: false },
+  { icon: FaGithub, href: "https://github.com/TGBenW", label: "GitHub", active: true },
 ];
 
 export default function FAQ() {
+  const { t, data, language } = useI18n();
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const faqColumnRef = useRef<HTMLDivElement | null>(null);
+  const contactColumnRef = useRef<HTMLDivElement | null>(null);
+  const activeTemplateRef = useRef("");
+
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -78,6 +84,7 @@ export default function FAQ() {
   const [isDragging, setIsDragging] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -89,18 +96,18 @@ export default function FAQ() {
   ): string | undefined => {
     switch (name) {
       case "name":
-        if (!value.trim()) return "Name is required";
+        if (!value.trim()) return t.faq.validation.nameRequired;
         if (value.trim().length < 2)
-          return "Name must be at least 2 characters";
+          return t.faq.validation.nameShort;
         return undefined;
       case "email":
-        if (!value.trim()) return "Email is required";
-        if (!validateEmail(value)) return "Please enter a valid email";
+        if (!value.trim()) return t.faq.validation.emailRequired;
+        if (!validateEmail(value)) return t.faq.validation.emailInvalid;
         return undefined;
       case "message":
-        if (!value.trim()) return "Message is required";
+        if (!value.trim()) return t.faq.validation.messageRequired;
         if (value.trim().length < 10)
-          return "Message must be at least 10 characters";
+          return t.faq.validation.messageShort;
         return undefined;
       default:
         return undefined;
@@ -109,10 +116,10 @@ export default function FAQ() {
 
   const validateFile = (file: File): string | undefined => {
     if (!ALLOWED_TYPES.includes(file.type)) {
-      return "File type not supported. Use JPG, PNG, GIF, WebP, PDF, or DOC";
+      return t.faq.validation.fileType;
     }
     if (file.size > MAX_FILE_SIZE) {
-      return "File is too large. Maximum size is 10MB";
+      return t.faq.validation.fileSize;
     }
     return undefined;
   };
@@ -122,6 +129,7 @@ export default function FAQ() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setSubmitError("");
 
     if (touched[name as keyof TouchedFields]) {
       const error = validateField(name as keyof FormData, value);
@@ -139,6 +147,7 @@ export default function FAQ() {
   };
 
   const handleFileSelect = useCallback((selectedFile: File) => {
+    setSubmitError("");
     const error = validateFile(selectedFile);
     if (error) {
       setErrors((prev) => ({ ...prev, file: error }));
@@ -175,6 +184,7 @@ export default function FAQ() {
   };
 
   const removeFile = () => {
+    setSubmitError("");
     setFile(null);
     setErrors((prev) => ({ ...prev, file: undefined }));
   };
@@ -203,34 +213,172 @@ export default function FAQ() {
 
     if (!validateForm()) return;
 
+    setSubmitError("");
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const payload = new FormData();
+      payload.append("name", formData.name.trim());
+      payload.append("email", formData.email.trim());
+      payload.append("message", formData.message.trim());
+      payload.append("lang", language);
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: "", email: "", message: "" });
-    setFile(null);
-    setTouched({ name: false, email: false, message: false });
-    setErrors({});
+      if (file) {
+        payload.append("file", file);
+      }
 
-    setTimeout(() => setIsSubmitted(false), 5000);
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: payload,
+      });
+
+      if (!response.ok) {
+        const body = await response.json().catch(() => null);
+        const errorMessage =
+          body && typeof body.error === "string"
+            ? body.error
+            : t.faq.validation.submitFallback;
+        throw new Error(errorMessage);
+      }
+
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+      setFile(null);
+      setTouched({ name: false, email: false, message: false });
+      setErrors({});
+
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (error) {
+      setIsSubmitted(false);
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : t.faq.validation.submitFallback
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const left = faqColumnRef.current;
+    const right = contactColumnRef.current;
+
+    if (!container || !left || !right) return;
+
+    let raf = 0;
+
+    const MIN_RIGHT_WIDTH = 280;
+    const MAX_LEFT_FR = 1.9;
+    const STEP = 0.05;
+
+    const isDesktop = () => window.matchMedia("(min-width: 768px)").matches;
+
+    const balanceColumns = () => {
+      if (!isDesktop()) {
+        if (activeTemplateRef.current) {
+          container.style.removeProperty("grid-template-columns");
+          activeTemplateRef.current = "";
+        }
+        return;
+      }
+
+      const previousTemplate = container.style.gridTemplateColumns;
+      let bestUnderOrEqual: { diff: number; template: string } | null = null;
+      let bestOver: { diff: number; template: string } | null = null;
+
+      for (let leftFr = 1.0; leftFr <= MAX_LEFT_FR; leftFr += STEP) {
+        const rightFr = Math.max(0.35, 2 - leftFr);
+        const template = `minmax(0, ${leftFr.toFixed(2)}fr) minmax(0, ${rightFr.toFixed(2)}fr)`;
+        container.style.gridTemplateColumns = template;
+
+        const rightWidth = right.getBoundingClientRect().width;
+        if (rightWidth < MIN_RIGHT_WIDTH) {
+          continue;
+        }
+
+        const leftHeight = left.getBoundingClientRect().height;
+        const rightHeight = right.getBoundingClientRect().height;
+        const diff = leftHeight - rightHeight;
+
+        // Prefer layouts where left side is not longer (diff <= 0), closest to zero.
+        if (diff <= 0) {
+          if (!bestUnderOrEqual || diff > bestUnderOrEqual.diff) {
+            bestUnderOrEqual = { diff, template };
+          }
+          continue;
+        }
+
+        // Fallback: if perfect/under match is impossible, use the smallest positive overflow.
+        if (!bestOver || diff < bestOver.diff) {
+          bestOver = { diff, template };
+        }
+      }
+
+      const bestTemplate =
+        bestUnderOrEqual?.template ?? bestOver?.template ?? previousTemplate;
+
+      if (activeTemplateRef.current !== bestTemplate && bestTemplate) {
+        container.style.gridTemplateColumns = bestTemplate;
+        activeTemplateRef.current = bestTemplate;
+      } else {
+        if (bestTemplate) {
+          container.style.gridTemplateColumns = bestTemplate;
+        }
+      }
+    };
+
+    const scheduleBalance = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(balanceColumns);
+    };
+
+    const ro = new ResizeObserver(scheduleBalance);
+    ro.observe(container);
+    ro.observe(left);
+    ro.observe(right);
+
+    window.addEventListener("resize", scheduleBalance, { passive: true });
+
+    scheduleBalance();
+    const delayed = window.setTimeout(scheduleBalance, 250);
+    const late = window.setTimeout(scheduleBalance, 700);
+    const fontsReady = (document as Document & { fonts?: FontFaceSet }).fonts?.ready;
+    fontsReady?.then(() => scheduleBalance()).catch(() => {});
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(delayed);
+      window.clearTimeout(late);
+      ro.disconnect();
+      window.removeEventListener("resize", scheduleBalance);
+    };
+  }, [
+    file,
+    isSubmitted,
+    submitError,
+    errors.name,
+    errors.email,
+    errors.message,
+    errors.file,
+    language,
+  ]);
 
   return (
     <section className={styles.faq} id="faq">
       <FadeUp>
         <TitleLight
-          title="FAQ & Contact"
-          description="Common questions and a direct line to us"
+          title={t.faq.title}
+          description={t.faq.description}
         />
       </FadeUp>
 
-      <div className={styles.container}>
-        <div className={styles.faqColumn}>
-          <h3 className={styles.columnTitle}>Frequently Asked</h3>
+      <div className={styles.container} ref={containerRef}>
+        <div className={styles.faqColumn} ref={faqColumnRef}>
+          <h3 className={styles.columnTitle}>{t.faq.leftTitle}</h3>
           <div className={styles.faqList}>
-            {faqData.map((faq, index) => (
+            {data.faqData.map((faq, index) => (
               <motion.div
                 key={index}
                 className={styles.faqItem}
@@ -246,8 +394,8 @@ export default function FAQ() {
           </div>
         </div>
 
-        <div className={styles.contactColumn}>
-          <h3 className={styles.columnTitle}>Get in Touch</h3>
+        <div className={styles.contactColumn} ref={contactColumnRef}>
+          <h3 className={styles.columnTitle}>{t.faq.rightTitle}</h3>
           
           <motion.div 
             className={styles.contactInfo}
@@ -255,48 +403,61 @@ export default function FAQ() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className={styles.contactBlock}>
-              <p className={styles.contactLabel}>For project inquiries</p>
-              <a href="mailto:hello@amdigital.studio" className={styles.contactLink}>
+            <div className={`${styles.contactBlock} ${styles.contactBlockPrimary}`}>
+              <p className={styles.contactLabel}>{t.faq.inquiriesLabel}</p>
+              <a href={`mailto:${t.common.contactEmail}`} className={styles.contactLink}>
                 <VscMail className={styles.contactIcon} />
-                <span>hello@amdigital.studio</span>
+                <span>{t.common.contactEmail}</span>
               </a>
-              <p className={styles.responseTime}>Usually reply within 24 hours</p>
+              <p className={styles.responseTime}>{t.faq.replyTime}</p>
             </div>
 
-            <div className={styles.contactBlock}>
-              <p className={styles.contactLabel}>Quick chat? Message us directly</p>
-              <div className={styles.socialLinks}>
-                {MESSENGERS.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label={item.label}
-                  >
-                    <item.icon />
-                  </a>
-                ))}
+            <div className={styles.contactGrid}>
+              <div className={styles.contactBlock}>
+                <p className={styles.contactLabel}>{t.faq.quickChatLabel}</p>
+                <div className={styles.socialLinks}>
+                  {MESSENGERS.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialLink}
+                      aria-label={item.label}
+                    >
+                      <item.icon />
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className={styles.contactBlock}>
-              <p className={styles.contactLabel}>Follow our work</p>
-              <div className={styles.socialLinks}>
-                {SOCIALS.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label={item.label}
-                  >
-                    <item.icon />
-                  </a>
-                ))}
+              <div className={styles.contactBlock}>
+                <p className={styles.contactLabel}>{t.faq.followLabel}</p>
+                <div className={styles.socialLinks}>
+                  {SOCIALS.map((item) =>
+                    item.active ? (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.socialLink}
+                        aria-label={item.label}
+                      >
+                        <item.icon />
+                      </a>
+                    ) : (
+                      <span
+                        key={item.label}
+                        className={`${styles.socialLink} ${styles.socialLinkDisabled}`}
+                        aria-label={`${item.label} (coming soon)`}
+                        title={`${item.label} (coming soon)`}
+                      >
+                        <item.icon />
+                      </span>
+                    )
+                  )}
+                </div>
               </div>
             </div>
           </motion.div>
@@ -309,47 +470,49 @@ export default function FAQ() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <div className={styles.formGroup}>
-              <label htmlFor="name" className={styles.label}>
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="Your name"
-                className={`${styles.input} ${touched.name && errors.name ? styles.inputError : ""}`}
-              />
-              <span className={styles.errorText}>
-                {touched.name && errors.name ? errors.name : ""}
-              </span>
-            </div>
+            <div className={styles.inputRow}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name" className={styles.label}>
+                  {t.faq.form.name}
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder={t.faq.form.namePlaceholder}
+                  className={`${styles.input} ${touched.name && errors.name ? styles.inputError : ""}`}
+                />
+                <span className={styles.errorText}>
+                  {touched.name && errors.name ? errors.name : ""}
+                </span>
+              </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="email" className={styles.label}>
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="your@email.com"
-                className={`${styles.input} ${touched.email && errors.email ? styles.inputError : ""}`}
-              />
-              <span className={styles.errorText}>
-                {touched.email && errors.email ? errors.email : ""}
-              </span>
+              <div className={styles.formGroup}>
+                <label htmlFor="email" className={styles.label}>
+                  {t.faq.form.email}
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder={t.faq.form.emailPlaceholder}
+                  className={`${styles.input} ${touched.email && errors.email ? styles.inputError : ""}`}
+                />
+                <span className={styles.errorText}>
+                  {touched.email && errors.email ? errors.email : ""}
+                </span>
+              </div>
             </div>
 
             <div className={styles.formGroup}>
               <label htmlFor="message" className={styles.label}>
-                Message
+                {t.faq.form.message}
               </label>
               <textarea
                 id="message"
@@ -357,8 +520,8 @@ export default function FAQ() {
                 value={formData.message}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                placeholder="Tell us about your project..."
-                rows={5}
+                placeholder={t.faq.form.messagePlaceholder}
+                rows={4}
                 className={`${styles.textarea} ${touched.message && errors.message ? styles.inputError : ""}`}
               />
               <span className={styles.errorText}>
@@ -368,7 +531,7 @@ export default function FAQ() {
 
             <div className={styles.formGroup}>
               <label className={styles.label}>
-                Attachment <span className={styles.optional}>(optional)</span>
+                {t.faq.form.attachment} <span className={styles.optional}>{t.faq.form.optional}</span>
               </label>
               {!file ? (
                 <div
@@ -387,10 +550,10 @@ export default function FAQ() {
                   />
                   <VscCloudUpload className={styles.uploadIcon} />
                   <p className={styles.dropzoneText}>
-                    Drag & drop or <span>browse</span>
+                    {t.faq.form.dropzonePrefix} <span>{t.faq.form.dropzoneAction}</span>
                   </p>
                   <p className={styles.dropzoneHint}>
-                    JPG, PNG, GIF, WebP, PDF, DOC up to 10MB
+                    {t.faq.form.dropzoneHint}
                   </p>
                 </div>
               ) : (
@@ -405,7 +568,7 @@ export default function FAQ() {
                     type="button"
                     onClick={removeFile}
                     className={styles.removeFile}
-                    aria-label="Remove file"
+                    aria-label={t.faq.form.removeFile}
                   >
                     <VscClose />
                   </button>
@@ -426,9 +589,9 @@ export default function FAQ() {
               {isSubmitting ? (
                 <span className={styles.spinner} />
               ) : isSubmitted ? (
-                "Message Sent!"
+                t.faq.form.sent
               ) : (
-                "Send Message"
+                t.faq.form.send
               )}
             </motion.button>
 
@@ -438,7 +601,18 @@ export default function FAQ() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                Thanks! We'll get back to you within 1-2 business days.
+                {t.faq.form.success}
+              </motion.p>
+            )}
+
+            {submitError && (
+              <motion.p
+                role="alert"
+                className={styles.submitErrorText}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                {submitError}
               </motion.p>
             )}
           </motion.form>
