@@ -20,7 +20,7 @@
 .title {
   position: relative;
   z-index: 10;
-  font-size: 2.25rem;
+  font-size: 2.05rem;
   font-weight: 700;
   
   @include md {
@@ -40,6 +40,8 @@
 .subtitle {
   margin-top: 1.5rem;
   width: 75%;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 1.125rem;
   font-weight: 250;
   opacity: 0.8;
