@@ -108,6 +108,12 @@
   margin: 0;
 }
 
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .socialIcon {
   cursor: pointer;
   transition: all 0.2s ease;
@@ -115,6 +121,15 @@
 
   &:hover {
     opacity: 0.6;
+  }
+}
+
+.socialLinkDisabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+
+  .socialIcon {
+    cursor: not-allowed;
   }
 }
 
