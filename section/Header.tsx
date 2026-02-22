@@ -1,23 +1,11 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FadeDown from "../components/animations/FadeDown";
 import Button from "../components/ui/Button";
+import { LANGUAGE_OPTIONS, type Language, useI18n } from "../lib/i18n";
 import Logo from "../components/ui/Logo";
 import styles from "./Header.module.scss";
-
-interface HeaderItem {
-  name: string;
-  id: string;
-}
-
-const headerList: HeaderItem[] = [
-  { name: "Process", id: "process" },
-  { name: "Services", id: "services" },
-  { name: "Pricing", id: "pricing" },
-  { name: "Work", id: "work" },
-  { name: "FAQ", id: "faq" },
-];
 
 const DIRECTION_DEADZONE = 6;
 
@@ -34,6 +22,7 @@ function clamp(n: number, min: number, max: number) {
 }
 
 export default function Header() {
+  const { language, setLanguage, t } = useI18n();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // причина показа от скролла
@@ -49,6 +38,11 @@ export default function Header() {
 
   const toggleMenu = () => setIsMenuOpen((v) => !v);
   const closeMenu = () => setIsMenuOpen(false);
+  const headerList = t.header.nav;
+
+  const handleLanguageChange = (nextLanguage: Language) => {
+    setLanguage(nextLanguage);
+  };
 
   const calcOpacity = (y: number) => {
     return y <= FADE_OUT_END_PX ? 0 : clamp((y - FADE_OUT_END_PX) / FADE_RANGE_PX, 0, 1);
@@ -125,6 +119,27 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
+  const LanguageSelector = ({ mobile = false }: { mobile?: boolean }) => (
+    <div className={mobile ? styles.langSwitchMobile : styles.langSwitch} aria-label="Language selector">
+      {LANGUAGE_OPTIONS.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          className={`${styles.langBtn} ${language === option.value ? styles.langBtnActive : ""}`}
+          onClick={() => {
+            handleLanguageChange(option.value);
+            if (mobile) {
+              closeMenu();
+            }
+          }}
+          aria-pressed={language === option.value}
+        >
+          {option.label}
+        </button>
+      ))}
+    </div>
+  );
+
   const DesktopInner = () => (
     <>
       <Logo />
@@ -132,11 +147,14 @@ export default function Header() {
         <div className={styles.links}>
           {headerList.map((item) => (
             <a className={styles.link} href={`#${item.id}`} key={item.id}>
-              {item.name}
+              {item.label}
             </a>
           ))}
         </div>
-        <Button text="Get a Quote" className={styles.navBtn} />
+        <div className={styles.navActions}>
+          <LanguageSelector />
+          <Button text={t.header.cta} className={styles.navBtn} href="#faq" />
+        </div>
       </div>
     </>
   );
@@ -189,7 +207,7 @@ export default function Header() {
         <button
           type="button"
           onClick={toggleMenu}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={isMenuOpen ? t.header.closeMenu : t.header.openMenu}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
         >
@@ -205,12 +223,15 @@ export default function Header() {
           {headerList.map((item) => (
             <li key={item.id}>
               <a className={styles.mobileLink} href={`#${item.id}`} onClick={closeMenu}>
-                {item.name}
+                {item.label}
               </a>
             </li>
           ))}
+          <li className={styles.mobileLangContainer}>
+            <LanguageSelector mobile />
+          </li>
           <li className={styles.mobileBtnContainer}>
-            <Button text="Get a Quote" className={styles.mobileBtn} />
+            <Button text={t.header.cta} className={styles.mobileBtn} href="#faq" onClick={closeMenu} />
           </li>
         </ul>
       </div>
