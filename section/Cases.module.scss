@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   width: 85%;
-  height: auto;
+  min-height: 24rem;
   border-radius: 1rem;
   border: 1px solid rgba($primary, 0.3);
   background: rgba($primary, 0.01);
@@ -30,6 +30,7 @@
   @include sm {
     width: 706px;
     flex-direction: row;
+    min-height: 18.5rem;
   }
 }
 
@@ -73,13 +74,25 @@
   margin-top: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
+  line-height: 1.25;
+  min-height: 3.2rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .description {
   margin-top: 0.5rem;
   font-size: 1rem;
+  line-height: 1.45;
   font-weight: 200;
   opacity: 0.8;
+  min-height: 4.4rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 .tags {
