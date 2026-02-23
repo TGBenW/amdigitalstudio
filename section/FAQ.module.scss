@@ -18,26 +18,30 @@
   padding: 0 1.5rem;
 
   @include md {
-    flex-direction: row;
-    gap: 4rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+    align-items: start;
+    gap: 2.25rem;
     margin-top: 5rem;
   }
 }
 
 .faqColumn {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
 
   @include md {
-    padding-right: 4rem;
+    padding-right: 2.25rem;
     border-right: 1px solid rgba($background, 0.2);
   }
 }
 
 .contactColumn {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
 
   @include md {
-    padding-left: 0rem;
+    padding-left: 0;
   }
 }
 
@@ -59,14 +63,17 @@
   gap: 0.75rem;
 
   @include md {
-    gap: 1rem;
+    gap: 0.85rem;
   }
 }
 
 .faqItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
   text-align: left;
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.2rem;
   border: 1px solid rgba($primary, 0.25);
   border-radius: 1rem;
   background: linear-gradient(
@@ -108,7 +115,7 @@
 
   &:hover {
     border-color: rgba($primary, 0.5);
-    transform: translateX(4px);
+    transform: translateX(2px);
 
     &::before {
       opacity: 1;
@@ -146,16 +153,33 @@
 .contactInfo {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba($background, 0.15);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba($primary, 0.18);
+  border-radius: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba($primary, 0.04) 0%,
+    rgba($background, 0.03) 100%
+  );
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
 }
 
 .contactBlock {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
+}
+
+.contactBlockPrimary {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba($background, 0.12);
 }
 
 .contactLabel {
@@ -193,19 +217,20 @@
 
 .socialLinks {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
 .socialLink {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 0.5rem;
   background: rgba($background, 0.08);
   color: rgba($background, 0.7);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.2s ease;
 
@@ -215,10 +240,31 @@
   }
 }
 
+.socialLinkDisabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: rgba($background, 0.04);
+  color: rgba($background, 0.45);
+}
+
 .form {
   display: flex;
   flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem;
+  border: 1px solid rgba($background, 0.18);
+  border-radius: 1rem;
+  background: rgba($background, 0.02);
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 0.75rem;
+
+  @include md {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .formGroup {
@@ -241,7 +287,7 @@
 .input,
 .textarea {
   width: 100%;
-  padding: 0.875rem 1rem;
+  padding: 0.8rem 0.9rem;
   border-radius: 0.75rem;
   border: 1px solid rgba($background, 0.2);
   background: rgba($background, 0.05);
@@ -278,7 +324,7 @@
 
 .textarea {
   resize: none;
-  min-height: 140px;
+  min-height: 124px;
 }
 
 .inputError {
@@ -291,7 +337,7 @@
 
 .errorText {
   display: block;
-  height: 1.25rem;
+  min-height: 1rem;
   font-size: 0.8rem;
   color: #ef4444;
 }
@@ -301,8 +347,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 1.5rem;
+  gap: 0.35rem;
+  padding: 1rem;
   border: 2px dashed rgba($background, 0.2);
   border-radius: 0.75rem;
   background: rgba($background, 0.02);
@@ -325,12 +371,12 @@
 }
 
 .uploadIcon {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: rgba($background, 0.4);
 }
 
 .dropzoneText {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: rgba($background, 0.6);
 
   span {
@@ -341,7 +387,7 @@
 }
 
 .dropzoneHint {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: rgba($background, 0.4);
 }
 
@@ -409,7 +455,7 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 
   &:hover:not(:disabled) {
     opacity: 0.9;
@@ -447,5 +493,12 @@
   text-align: center;
   font-size: 0.9rem;
   color: rgba($background, 0.7);
+  margin-top: 0.5rem;
+}
+
+.submitErrorText {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #ef4444;
   margin-top: 0.5rem;
 }
