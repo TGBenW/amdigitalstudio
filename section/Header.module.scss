@@ -162,7 +162,10 @@
 
 .navBtn {
   height: 56px;
-  width: 149px;
+  width: auto;
+  min-width: 149px;
+  padding-inline: 1.45rem;
+  white-space: nowrap;
 }
 
 .navActions {
