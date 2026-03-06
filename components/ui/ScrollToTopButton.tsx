@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 export default function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > window.innerHeight) {
@@ -25,11 +29,16 @@ export default function ScrollToTopButton() {
   return (
     <div>
       {isVisible && (
-        <a href="/#header" className="scroll-to-top">
+        <button
+          type="button"
+          className="scroll-to-top"
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+        >
           <span className="icon">
             <ArrowUp />
           </span>
-        </a>
+        </button>
       )}
     </div>
   );
