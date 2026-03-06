@@ -81,6 +81,11 @@ type Locale = {
       category: string;
       title: string;
       description: string;
+      customTitle: string;
+      customDescription: string;
+      statusMoreToCome: string;
+      statusInProgress: string;
+      statusComingSoon: string;
     };
     blog: {
       category: string;
@@ -306,6 +311,11 @@ const en: Locale = {
       category: "our work",
       title: "Case Studies",
       description: "Real projects, real results",
+      customTitle: "More case studies coming soon",
+      customDescription: "We're preparing new project breakdowns and adding them step by step.",
+      statusMoreToCome: "More to come",
+      statusInProgress: "In progress",
+      statusComingSoon: "Coming soon",
     },
     blog: {
       category: "insights",
@@ -366,7 +376,7 @@ const en: Locale = {
         { href: "#faq", text: "FAQ" },
       ],
       privacy: "Privacy Policy",
-      copyright: "© 2025 AM Digital Studio",
+      copyright: "© 2026 AM Digital Studio",
     },
     common: {
       contactEmail: "andreymanuilovweb@gmail.com",
@@ -548,6 +558,11 @@ const ru: Locale = {
       category: "наши работы",
       title: "Кейсы",
       description: "Реальные проекты, реальные результаты",
+      customTitle: "Скоро добавим новые кейсы",
+      customDescription: "Готовим новые разборы проектов и публикуем их поэтапно.",
+      statusMoreToCome: "Еще добавим",
+      statusInProgress: "В процессе",
+      statusComingSoon: "Скоро",
     },
     blog: {
       category: "инсайты",
@@ -608,7 +623,7 @@ const ru: Locale = {
         { href: "#faq", text: "FAQ" },
       ],
       privacy: "Политика конфиденциальности",
-      copyright: "© 2025 AM Digital Studio",
+      copyright: "© 2026 AM Digital Studio",
     },
     common: {
       contactEmail: "andreymanuilovweb@gmail.com",
@@ -640,6 +655,10 @@ const ru: Locale = {
       "Проект 10",
       "Проект 11",
       "Проект 12",
+      "Проект 13",
+      "Проект 14",
+      "Проект 15",
+      "Проект 16",
     ],
     designData: [
       {
@@ -780,15 +799,15 @@ const ru: Locale = {
     ],
     caseStudies: [
       {
-        category: "Сайт мероприятия",
-        title: "Tiny Tune Space",
-        description: "Мультиязычный сайт мероприятия с платежами через Stripe и контент-процессом в стиле headless CMS.",
+        category: "Сайт студии",
+        title: "Tiny Tunes Space",
+        description: "Мультиязычный сайт детской музыкальной студии: билеты через Stripe, GA4 и контент в headless CMS.",
         tags: ["Мультиязычность", "Stripe", "Google Analytics", "Headless CMS", "API"],
       },
       {
         category: "Enterprise",
         title: "Python-автоматизация и потоки данных (NDA)",
-        description: "Enterprise-проект на Python под NDA: внутренние инструменты, процессы данных и автоматизированная отчетность.",
+        description: "Корпоративный Python-проект под NDA: 75+ кастомных флоу, автоматизаций и отчетных пайплайнов.",
         tags: ["Python", "Автоматизация", "API", "Данные", "Отчетность", "NDA"],
       },
     ],
@@ -977,6 +996,11 @@ const lv: Locale = {
       category: "mūsu darbi",
       title: "Projektu piemēri",
       description: "Reāli projekti, reāli rezultāti",
+      customTitle: "Drīzumā pievienosim jaunus projektu piemērus",
+      customDescription: "Gatavojam jaunus projektu aprakstus un publicējam tos pakāpeniski.",
+      statusMoreToCome: "Vēl būs",
+      statusInProgress: "Procesā",
+      statusComingSoon: "Drīzumā",
     },
     blog: {
       category: "ieskati",
@@ -1037,7 +1061,7 @@ const lv: Locale = {
         { href: "#faq", text: "BUJ" },
       ],
       privacy: "Privātuma politika",
-      copyright: "© 2025 AM Digital Studio",
+      copyright: "© 2026 AM Digital Studio",
     },
     common: {
       contactEmail: "andreymanuilovweb@gmail.com",
@@ -1069,6 +1093,10 @@ const lv: Locale = {
       "Projekts 10",
       "Projekts 11",
       "Projekts 12",
+      "Projekts 13",
+      "Projekts 14",
+      "Projekts 15",
+      "Projekts 16",
     ],
     designData: [
       {
@@ -1209,15 +1237,15 @@ const lv: Locale = {
     ],
     caseStudies: [
       {
-        category: "Pasākuma mājaslapa",
-        title: "Tiny Tune Space",
-        description: "Daudzvalodu pasākuma mājaslapa ar Stripe maksājumiem un satura plūsmu headless CMS stilā.",
+        category: "Studijas vietne",
+        title: "Tiny Tunes Space",
+        description: "Daudzvalodu vietne bērnu mūzikas studijai ar Stripe biļetēm, GA4 un saturu headless CMS.",
         tags: ["Daudzvalodu", "Stripe", "Google Analytics", "Headless CMS", "API"],
       },
       {
         category: "Enterprise",
         title: "Python automatizācija un datu plūsmas (NDA)",
-        description: "Enterprise Python projekts zem NDA: iekšējie rīki, datu plūsmas un automatizēta atskaišu sagatavošana.",
+        description: "Enterprise Python projekts zem NDA: 75+ pielāgoti procesi, automatizācijas un atskaišu plūsmas.",
         tags: ["Python", "Automatizācija", "API", "Dati", "Atskaites", "NDA"],
       },
     ],
