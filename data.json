@@ -32,18 +32,22 @@
     { "name": "Webflow", "src": "./assets/stack/webflow.svg" }
   ],
   "worksImages": [
-    { "src": "./assets/beautifulworks/edo.svg", "alt": "Project 1" },
-    { "src": "./assets/beautifulworks/dfat.svg", "alt": "Project 2" },
-    { "src": "./assets/beautifulworks/insights.svg", "alt": "Project 3" },
-    { "src": "./assets/beautifulworks/oxfam.svg", "alt": "Project 4" },
-    { "src": "./assets/beautifulworks/cvgt.svg", "alt": "Project 5" },
-    { "src": "./assets/beautifulworks/dropbottle.svg", "alt": "Project 6" },
-    { "src": "./assets/beautifulworks/map.svg", "alt": "Project 7" },
-    { "src": "./assets/beautifulworks/unwrapped.svg", "alt": "Project 8" },
-    { "src": "./assets/beautifulworks/RWH.svg", "alt": "Project 9" },
-    { "src": "./assets/beautifulworks/bluegreen.svg", "alt": "Project 10" },
-    { "src": "./assets/beautifulworks/welcomehome.svg", "alt": "Project 11" },
-    { "src": "./assets/beautifulworks/ader.svg", "alt": "Project 12" }
+    { "src": "./assets/beautifulworks/img1.png", "alt": "Project 1" },
+    { "src": "./assets/beautifulworks/img2.png", "alt": "Project 2" },
+    { "src": "./assets/beautifulworks/img3.png", "alt": "Project 3" },
+    { "src": "./assets/beautifulworks/img4.png", "alt": "Project 4" },
+    { "src": "./assets/beautifulworks/img5.png", "alt": "Project 5" },
+    { "src": "./assets/beautifulworks/img6.png", "alt": "Project 6" },
+    { "src": "./assets/beautifulworks/img7.png", "alt": "Project 7" },
+    { "src": "./assets/beautifulworks/img8.png", "alt": "Project 8" },
+    { "src": "./assets/beautifulworks/img9.png", "alt": "Project 9" },
+    { "src": "./assets/beautifulworks/img10.png", "alt": "Project 10" },
+    { "src": "./assets/beautifulworks/img11.png", "alt": "Project 11" },
+    { "src": "./assets/beautifulworks/img12.png", "alt": "Project 12" },
+    { "src": "./assets/beautifulworks/img13.png", "alt": "Project 13" },
+    { "src": "./assets/beautifulworks/img14.png", "alt": "Project 14" },
+    { "src": "./assets/beautifulworks/img15.png", "alt": "Project 15" },
+    { "src": "./assets/beautifulworks/img16.png", "alt": "Project 16" }
   ],
   "capabilitiesButtons": [
     { "name": "Website Design" },
@@ -180,17 +184,20 @@
   ],
   "caseStudies": [
     {
-      "image": "./assets/news_articles/news04.svg",
-      "category": "Event Website",
-      "title": "Tiny Tune Space",
-      "description": "Multilingual event website with Stripe payments and a headless CMS style content workflow.",
+      "image": "./assets/news_articles/tts.png",
+      "fallbackImage": "./assets/news_articles/news04.svg",
+      "category": "Studio Website",
+      "title": "Tiny Tunes Space",
+      "description": "Multilingual website for a children's music studio with Stripe ticketing, GA4 tracking, and headless CMS.",
+      "actionLabel": "Live",
+      "actionUrl": "https://tinytunesspace.com/",
       "tags": ["Multilingual", "Stripe", "Google Analytics", "Headless CMS", "API"]
     },
     {
       "image": "./assets/news_articles/news05.svg",
       "category": "Enterprise",
       "title": "Python Automation & Data Workflows (NDA)",
-      "description": "Enterprise Python automation project (NDA) focused on internal tools, data workflows, and automated reporting.",
+      "description": "Enterprise Python project under NDA: 75+ custom workflows, automations, and reporting pipelines.",
       "tags": ["Python", "Automation", "API", "Data", "Reporting", "NDA"]
     }
   ],
