@@ -4,7 +4,6 @@ import ScrollToTopButton from "../components/ui/ScrollToTopButton";
 import { LanguageProvider } from "../lib/i18n";
 import BeautifulWorks from "../section/BeautifulWorks";
 import Cases from "../section/Cases";
-import Blog from "../section/Blog";
 import Stack from "../section/Stack";
 import Capabilities from "../section/Capabilities";
 import FAQ from "../section/FAQ";
@@ -43,7 +42,6 @@ export default function HomePage() {
         <div className="container">
           <Pricing />
           <Cases />
-          <Blog />
         </div>
         <div className="bg-white">
           <div className="container">
