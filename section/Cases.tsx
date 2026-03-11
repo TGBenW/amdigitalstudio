@@ -26,11 +26,30 @@ export default function Cases() {
           <MagicCard key={`case-${index}`} className={styles.card}>
             <img
               src={card.image}
-              alt={card.category}
+              alt={card.title}
               className={styles.cardImage}
+              onError={(event) => {
+                if (!card.fallbackImage) return;
+                const target = event.currentTarget;
+                if (target.dataset.fallbackApplied === "true") return;
+                target.dataset.fallbackApplied = "true";
+                target.src = card.fallbackImage;
+              }}
             />
             <div className={styles.cardContent}>
-              <h2 className={styles.category}>{card.category}</h2>
+              <div className={styles.cardTop}>
+                <h2 className={styles.category}>{card.category}</h2>
+                {card.actionUrl && (
+                  <a
+                    className={styles.liveButton}
+                    href={card.actionUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {card.actionLabel ?? "Live"}
+                  </a>
+                )}
+              </div>
               <h3 className={styles.title}>{card.title}</h3>
               <p className={styles.description}>{card.description}</p>
               <div className={styles.tags}>
@@ -44,6 +63,18 @@ export default function Cases() {
           </MagicCard>
         ))}
       </div>
+
+      <FadeOnScroll>
+        <div className={styles.custom}>
+          <h3>{t.cases.customTitle}</h3>
+          <p>{t.cases.customDescription}</p>
+          <div className={styles.statuses}>
+            <span className={styles.status}>{t.cases.statusMoreToCome}</span>
+            <span className={styles.status}>{t.cases.statusInProgress}</span>
+            <span className={styles.status}>{t.cases.statusComingSoon}</span>
+          </div>
+        </div>
+      </FadeOnScroll>
     </section>
   );
 }
