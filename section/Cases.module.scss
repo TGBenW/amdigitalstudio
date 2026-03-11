@@ -22,6 +22,7 @@
   flex-direction: column;
   width: 85%;
   min-height: 24rem;
+  overflow: hidden;
   border-radius: 1rem;
   border: 1px solid rgba($primary, 0.3);
   background: rgba($primary, 0.01);
@@ -36,15 +37,20 @@
 
 .cardImage {
   height: 10rem;
+  max-height: 10rem;
   width: 100%;
   border-radius: 0.9rem 0.9rem 0 0;
   -o-object-fit: cover;
      object-fit: cover;
 
   @include sm {
-    height: auto;
-    width: auto;
-    aspect-ratio: 1;
+    width: 18.5rem;
+    min-width: 18.5rem;
+    max-width: 18.5rem;
+    height: 18.5rem;
+    min-height: 18.5rem;
+    max-height: 18.5rem;
+    aspect-ratio: 1 / 1;
     align-self: stretch;
     border-radius: 0.9rem 0 0 0.9rem;
     flex-shrink: 0;
@@ -63,11 +69,42 @@
   }
 }
 
+.cardTop {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 .category {
   font-size: 0.875rem;
   font-weight: 300;
   text-transform: uppercase;
   color: $primary;
+}
+
+.liveButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba($primary, 0.65);
+  color: $primary;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+
+  &:hover {
+    background: rgba($primary, 0.12);
+    border-color: rgba($primary, 0.9);
+    color: rgba($text, 0.95);
+  }
 }
 
 .title {
@@ -112,4 +149,59 @@
   border: 1px solid rgba($primary, 0.5);
   color: $primary;
   white-space: nowrap;
+}
+
+.custom {
+  width: 85%;
+  max-width: 706px;
+  margin: 1.5rem auto 0;
+  padding: 1.2rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba($primary, 0.25);
+  background: rgba($primary, 0.03);
+  text-align: center;
+
+  @include sm {
+    padding: 1.35rem 1.25rem;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $text;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 0.55rem auto 0;
+    max-width: 42rem;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    font-weight: 250;
+    color: rgba($text, 0.82);
+  }
+}
+
+.statuses {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba($primary, 0.45);
+  color: $primary;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  background: rgba($primary, 0.08);
 }
