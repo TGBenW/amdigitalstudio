@@ -16,7 +16,7 @@ import {
   FaDiscord 
 } from "react-icons/fa6";
 import FadeUp from "../components/animations/FadeUp";
-import { useI18n } from "../lib/i18n";
+import { type Language, useI18n } from "../lib/i18n";
 import TitleLight from "../components/ui/TitleLight";
 import styles from "./FAQ.module.scss";
 
@@ -49,6 +49,14 @@ const ALLOWED_TYPES = [
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ];
+
+const CONTACT_FORM_ENABLED = false;
+
+const FORM_DISABLED_MESSAGE: Record<Language, string> = {
+  en: "Contact form is temporarily disabled. Please use email above.",
+  ru: "Форма временно отключена. Используйте email выше.",
+  lv: "Kontaktforma īslaicīgi atspējota. Lūdzu, izmantojiet e-pastu augstāk.",
+};
 
 const MESSENGERS = [
   { icon: FaTelegram, href: "https://t.me/am_digital_studio", label: "Telegram", active: true },
@@ -127,6 +135,8 @@ export default function FAQ() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    if (!CONTACT_FORM_ENABLED) return;
+
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setSubmitError("");
@@ -140,6 +150,8 @@ export default function FAQ() {
   const handleBlur = (
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    if (!CONTACT_FORM_ENABLED) return;
+
     const { name, value } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
     const error = validateField(name as keyof FormData, value);
@@ -147,6 +159,8 @@ export default function FAQ() {
   };
 
   const handleFileSelect = useCallback((selectedFile: File) => {
+    if (!CONTACT_FORM_ENABLED) return;
+
     setSubmitError("");
     const error = validateFile(selectedFile);
     if (error) {
@@ -158,6 +172,8 @@ export default function FAQ() {
   }, []);
 
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!CONTACT_FORM_ENABLED) return;
+
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       handleFileSelect(selectedFile);
@@ -165,16 +181,22 @@ export default function FAQ() {
   };
 
   const handleDragOver = (e: React.DragEvent) => {
+    if (!CONTACT_FORM_ENABLED) return;
+
     e.preventDefault();
     setIsDragging(true);
   };
 
   const handleDragLeave = (e: React.DragEvent) => {
+    if (!CONTACT_FORM_ENABLED) return;
+
     e.preventDefault();
     setIsDragging(false);
   };
 
   const handleDrop = (e: React.DragEvent) => {
+    if (!CONTACT_FORM_ENABLED) return;
+
     e.preventDefault();
     setIsDragging(false);
     const droppedFile = e.dataTransfer.files?.[0];
@@ -184,6 +206,8 @@ export default function FAQ() {
   };
 
   const removeFile = () => {
+    if (!CONTACT_FORM_ENABLED) return;
+
     setSubmitError("");
     setFile(null);
     setErrors((prev) => ({ ...prev, file: undefined }));
@@ -210,6 +234,11 @@ export default function FAQ() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!CONTACT_FORM_ENABLED) {
+      setSubmitError(FORM_DISABLED_MESSAGE[language]);
+      return;
+    }
 
     if (!validateForm()) return;
 
@@ -463,7 +492,7 @@ export default function FAQ() {
           </motion.div>
 
           <motion.form
-            className={styles.form}
+            className={`${styles.form} ${!CONTACT_FORM_ENABLED ? styles.formDisabled : ""}`}
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -480,6 +509,7 @@ export default function FAQ() {
                   id="name"
                   name="name"
                   value={formData.name}
+                  disabled={!CONTACT_FORM_ENABLED}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder={t.faq.form.namePlaceholder}
@@ -499,6 +529,7 @@ export default function FAQ() {
                   id="email"
                   name="email"
                   value={formData.email}
+                  disabled={!CONTACT_FORM_ENABLED}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder={t.faq.form.emailPlaceholder}
@@ -518,6 +549,7 @@ export default function FAQ() {
                 id="message"
                 name="message"
                 value={formData.message}
+                disabled={!CONTACT_FORM_ENABLED}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder={t.faq.form.messagePlaceholder}
@@ -539,11 +571,15 @@ export default function FAQ() {
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
-                  onClick={() => document.getElementById("fileInput")?.click()}
+                  onClick={() => {
+                    if (!CONTACT_FORM_ENABLED) return;
+                    document.getElementById("fileInput")?.click();
+                  }}
                 >
                   <input
                     type="file"
                     id="fileInput"
+                    disabled={!CONTACT_FORM_ENABLED}
                     onChange={handleFileInputChange}
                     accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.doc,.docx"
                     className={styles.fileInput}
@@ -566,6 +602,7 @@ export default function FAQ() {
                   </div>
                   <button
                     type="button"
+                    disabled={!CONTACT_FORM_ENABLED}
                     onClick={removeFile}
                     className={styles.removeFile}
                     aria-label={t.faq.form.removeFile}
@@ -582,7 +619,7 @@ export default function FAQ() {
             <motion.button
               type="submit"
               className={styles.submitBtn}
-              disabled={isSubmitting}
+              disabled={!CONTACT_FORM_ENABLED || isSubmitting}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -594,6 +631,10 @@ export default function FAQ() {
                 t.faq.form.send
               )}
             </motion.button>
+
+            {!CONTACT_FORM_ENABLED && (
+              <p className={styles.formUnavailableText}>{FORM_DISABLED_MESSAGE[language]}</p>
+            )}
 
             {isSubmitted && (
               <motion.p
