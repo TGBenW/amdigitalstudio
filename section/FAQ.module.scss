@@ -257,6 +257,10 @@
   background: rgba($background, 0.02);
 }
 
+.formDisabled {
+  opacity: 0.9;
+}
+
 .inputRow {
   display: grid;
   grid-template-columns: 1fr;
@@ -500,5 +504,12 @@
   text-align: center;
   font-size: 0.9rem;
   color: #ef4444;
+  margin-top: 0.5rem;
+}
+
+.formUnavailableText {
+  text-align: center;
+  font-size: 0.88rem;
+  color: rgba($background, 0.62);
   margin-top: 0.5rem;
 }
