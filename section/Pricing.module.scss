@@ -224,17 +224,6 @@
   }
 }
 
-.featured {
-  border-color: rgba($primary, 0.34);
-
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.07) 0%,
-    rgba($bg-card, 0.18) 40%,
-    rgba($bg-card, 0.22) 100%
-  );
-}
-
 .cardHeader {
   position: relative;
   z-index: 2;
