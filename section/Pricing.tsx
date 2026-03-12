@@ -90,9 +90,7 @@ export default function Pricing() {
             return (
               <FadeOnScroll key={index} delay={index * 0.15}>
                 <article
-                  className={`${styles.card} ${featured ? styles.featured : ""} ${
-                    hasBadge ? styles.withBadge : ""
-                  }`}
+                  className={`${styles.card} ${hasBadge ? styles.withBadge : ""}`}
                 >
                   {hasBadge && (
                     <FakeButton
@@ -130,9 +128,7 @@ export default function Pricing() {
                       <Button
                         text={t.pricing.cardCta}
                         href="#faq"
-                        className={`${styles.cardBtn} ${
-                          featured ? styles.cardBtnPrimary : styles.cardBtnGhost
-                        }`}
+                        className={`${styles.cardBtn} ${styles.cardBtnGhost}`}
                       />
                     </div>
                   </div>
