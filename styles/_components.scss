@@ -104,6 +104,9 @@
   bottom: 1rem;
   right: 1rem;
   z-index: $z-50;
+  border: 0;
+  cursor: pointer;
+  line-height: 0;
   border-radius: $radius-full;
   background-color: $primary;
   padding: 0.5rem;
